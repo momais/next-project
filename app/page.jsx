@@ -12,6 +12,11 @@ export default function Home() {
   <div className="absolute inset-0 bg-red-800 opacity-70 z-10"></div>
 </div>
 
+  <div className="absolute inset-0 bg-cover bg-center w-[85%] h-[105%]" 
+  style={{ backgroundImage: "url('/assets/bgbanner.jpg')" }}>
+    <div className="absolute inset-0 bg-red-800 opacity-70"></div>
+  </div>
+
   {/* Content Container */}
   <div className="relative flex flex-col md:flex-row items-start justify-between px-6 md:px-12 py-16 w-full">
     <div className="text-white md:ml-7 ml-0 mt-16 md:mt-10 text-left w-full max-w-2xl">
@@ -21,15 +26,12 @@ export default function Home() {
       </p>
     </div>
 
-   <div className="hidden md:block p-3 z-20">
-    <img src="/assets/offer.png" className="w-[150px] h-[230px]" />
-  </div>
-
+    {/* White Background Box */}
+    <div className="bg-white p-3 md:mr-[23%] -mt-3 hidden md:block">
+      <img src="/assets/offer.png" alt="Offer" className="w-[150px] h-[230px]" />
+    </div>
   </div>
 </div>
-
-
-
 
     <div className="flex items-center justify-center bg-white mt-[10%]">
       <div className="container mx-auto px-4 lg:px-12 flex flex-col lg:flex-row items-start gap-36">
