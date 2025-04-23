@@ -7,7 +7,11 @@ export default {
   ],
   theme: {
     extend: {
+      background: {
+        'gradient-var2': 'var(--gradient2)',
+      },
       colors: {
+        light: '#f8f9fa',
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
