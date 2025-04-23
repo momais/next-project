@@ -12,7 +12,6 @@ export default function Home() {
     <div className="absolute inset-0 bg-red-800 opacity-70 z-10"></div>
   </div>
 
-  {/* Content Container */}
   <div className="relative z-20 flex flex-col md:flex-row items-start justify-between px-6 md:px-12 py-16 max-w-[1400px] mx-auto">
     <div className="text-white md:ml-4 ml-0 mt-16 md:mt-10 text-left w-full max-w-2xl">
       <h2 className="text-3xl md:text-6xl font-bold">Become a Partner</h2>
