@@ -7,9 +7,10 @@ export default function Home() {
      
 <div className="relative md:w-[110%] w-[130%] h-[330px] md:h-[0%] md:-ml-20 -ml-4 -mt-4">
   {/* Background Image with Red Overlay */}
-  <div className="absolute inset-0 bg-cover bg-center w-[85%] h-[105%]" style={{ backgroundImage: "url('/assets/bg2.jpg')" }}>
-    <div className="absolute inset-0 bg-red-800 opacity-70"></div> {/* Increased opacity to 70% */}
-  </div>
+  <div className="absolute inset-0 bg-cover bg-center w-[85%] h-[105%]" 
+  style={{ backgroundImage: "url('/assets/bg2.jpg')" }}>
+  <div className="absolute inset-0 bg-red-800 opacity-70"></div>
+</div>
 
   {/* Content Container */}
   <div className="relative flex flex-col md:flex-row items-start justify-between px-6 md:px-12 py-16 w-full">
