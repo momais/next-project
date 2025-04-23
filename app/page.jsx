@@ -5,23 +5,23 @@ export default function Home() {
   return (
   <div className="page-content">
      
-<div className="relative md:w-[110%] w-[130%] h-[330px] md:h-[0%] md:-ml-20 -ml-4 -mt-4">
+<div className="relative w-full h-auto min-h-[330px] overflow-hidden mt-[-1rem] -left-[55px] ">
   {/* Background Image with Red Overlay */}
-  <div className="absolute inset-0 bg-cover bg-center w-[85%] h-[105%]" 
-  style={{ backgroundImage: "url('/assets/bgbanner.jpg')" }}>
-    <div className="absolute inset-0 bg-red-800 opacity-70"></div> {/* Increased opacity to 70% */}
+  <div className="absolute top-0 left-0 w-[100vw] h-full bg-cover bg-center z-0"
+    style={{ backgroundImage: "url('/assets/bgbanner.jpg')" }} >
+    <div className="absolute inset-0 bg-red-800 opacity-70 z-10"></div>
   </div>
 
   {/* Content Container */}
-  <div className="relative flex flex-col md:flex-row items-start justify-between px-6 md:px-12 py-16 w-full">
-    <div className="text-white md:ml-7 ml-0 mt-16 md:mt-10 text-left w-full max-w-2xl">
+  <div className="relative z-20 flex flex-col md:flex-row items-start justify-between px-6 md:px-12 py-16 max-w-[1400px] mx-auto">
+    <div className="text-white md:ml-4 ml-0 mt-16 md:mt-10 text-left w-full max-w-2xl">
       <h2 className="text-3xl md:text-6xl font-bold">Become a Partner</h2>
-      <p className="mt-4 text-base md:w-[85%] w-[80%] ml-1">
+      <p className="mt-4 text-base md:w-[85%] w-[90%]">
         ENJOY offers some amazing BOGO deals for you. Now get two for the price of one and enjoy!
       </p>
     </div>
 
-    <div className="bg-white p-3 md:mr-[23%] -mt-3 hidden md:block">
+    <div className="bg-white p-3 md:mr-[10%] -mt-3 hidden md:block">
       <img src="/assets/offer.png" alt="Offer" className="w-[150px] h-[230px]" />
     </div>
   </div>
