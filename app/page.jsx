@@ -7,9 +7,9 @@ export default function Home() {
      
 <div className="relative md:w-[110%] w-[130%] h-[330px] md:h-[0%] md:-ml-20 -ml-4 -mt-4">
   {/* Background Image with Red Overlay */}
-  <div className="absolute inset-0 bg-cover bg-center w-[85%] h-[105%]" 
-  style={{ backgroundImage: "url('/assets/bg2.jpg')" }}>
-  <div className="absolute inset-0 bg-red-800 opacity-70"></div>
+<div className="absolute inset-0 bg-cover bg-center w-full h-full min-h-[300px] lg:min-h-[600px] z-0"
+  style={{ backgroundImage: "url('/assets/bgbanner.jpg')" }}>
+  <div className="absolute inset-0 bg-red-800 opacity-70 z-10"></div>
 </div>
 
   {/* Content Container */}
@@ -20,6 +20,11 @@ export default function Home() {
         ENJOY offers some amazing BOGO deals for you. Now get two for the price of one and enjoy!
       </p>
     </div>
+
+   <div className="hidden md:block p-3 z-20">
+    <img src="/assets/offer.png" className="w-[150px] h-[230px]" />
+  </div>
+
   </div>
 </div>
 
