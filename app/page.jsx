@@ -20,11 +20,6 @@ export default function Home() {
         ENJOY offers some amazing BOGO deals for you. Now get two for the price of one and enjoy!
       </p>
     </div>
-
-    {/* White Background Box */}
-    <div className="bg-white p-3 md:mr-[23%] -mt-3 hidden md:block">
-      <img src="/assets/offer.png" alt="Offer" className="w-[150px] h-[230px]" />
-    </div>
   </div>
 </div>
 
