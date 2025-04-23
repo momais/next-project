@@ -7,14 +7,9 @@ export default function Home() {
      
 <div className="relative md:w-[110%] w-[130%] h-[330px] md:h-[0%] md:-ml-20 -ml-4 -mt-4">
   {/* Background Image with Red Overlay */}
-<div className="absolute inset-0 bg-cover bg-center w-full h-full min-h-[300px] lg:min-h-[600px] z-0"
-  style={{ backgroundImage: "url('/assets/bgbanner.jpg')" }}>
-  <div className="absolute inset-0 bg-red-800 opacity-70 z-10"></div>
-</div>
-
   <div className="absolute inset-0 bg-cover bg-center w-[85%] h-[105%]" 
   style={{ backgroundImage: "url('/assets/bgbanner.jpg')" }}>
-    <div className="absolute inset-0 bg-red-800 opacity-70"></div>
+    <div className="absolute inset-0 bg-red-800 opacity-70"></div> {/* Increased opacity to 70% */}
   </div>
 
   {/* Content Container */}
@@ -26,7 +21,6 @@ export default function Home() {
       </p>
     </div>
 
-    {/* White Background Box */}
     <div className="bg-white p-3 md:mr-[23%] -mt-3 hidden md:block">
       <img src="/assets/offer.png" alt="Offer" className="w-[150px] h-[230px]" />
     </div>
