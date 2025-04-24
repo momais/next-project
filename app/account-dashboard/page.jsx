@@ -76,7 +76,7 @@ export default function Dashboard() {
   return (
   <div>
 
-<div className="w-full overflow-hidden mb-[23%]">
+<div className="w-full overflow-hidden mb-[26%]">
       <div className="absolute top-20 left-0 w-screen min-h-[250px] max-sm:min-h-[230px] bg-cover 
       bg-center bg-no-repeat before:content-[''] before:absolute before:inset-0 before:bg-black 
       before:opacity-40" style={{ backgroundImage: "url('/assets/bg1.jpg')" }}>
@@ -165,9 +165,11 @@ export default function Dashboard() {
                   Log out
                   </Link>)
                 </p>
-                <p>From your account dashboard you can view your <a href="#" 
-                  className="underline hover:text-red-700">recent orders</a>, manage your <a href="#" className="underline hover:text-red-700">shipping and billing addresses</a>, and <a href="#" 
-                className="underline hover:text-red-700">edit your password and account details</a>.</p>
+                <p>From your account dashboard you can view your
+                 <a href="#" className="underline hover:text-red-700">recent orders</a>, manage your 
+                  <a href="#" className="underline hover:text-red-700">shipping and billing addresses
+                  </a>, and <a href="#" className="underline hover:text-red-700">
+                  edit your password and account details</a>.</p>
               </div>
 
           <div className="flex flex-col lg:flex-row gap-4 p-4">

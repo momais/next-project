@@ -42,7 +42,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="page-content -mt-4 overflow-x-hidden">
+    <div className="page-content overflow-x-hidden">
       <section className="px-4">
         <div className="flex flex-col lg:flex-row items-center justify-center">
           {/* small Left Side */}

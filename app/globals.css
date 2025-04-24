@@ -12,3 +12,7 @@ html, body {
 header {
 	overflow: hidden;
 }
+
+:root {
+  --gradient2: linear-gradient(to right, #FFB7CC, #FF9AB3, #FFDF8E); /* Even lighter gradient */
+}

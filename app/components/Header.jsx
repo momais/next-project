@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Header = ({ searchIcon, heartIcon, cartIcon }) => {
 
-const [tab, setTab] = useState("shoppingcart");
+const [tab, setTab] = useState("");
   const [showWishlist, setShowWishlist] = useState(true);
   const [isSearchOpen, setSearchOpen] = useState(false);
 
@@ -41,10 +41,11 @@ useEffect(() => {
 
 
   return (
-    <header className="site-header mo-left header style-1 px-8 py-4 border-b relative z-50 md:mt-0 -mt-4 md:mb-0 -mb-4">
-  <div className="sticky-header main-bar-wraper navbar-expand-lg">
-    <div className="main-bar">
-      <div className="container-fluid flex items-center justify-between w-full">
+
+ <header className="w-full bg-white border-b z-50">
+  <div>
+    <div>
+  <div className="mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-screen-xl flex items-center justify-between py-4">
         
         {/* Left: Logo (Hidden on Small Screens) */}
         <div className="logo-header logo-dark pl-4 hidden md:block">
@@ -90,11 +91,11 @@ useEffect(() => {
 
 
 
-          {/* Shop */}
+          {/* Become A Vendor */}
 <li className="has-mega-menu sub-menu-down relative group">
-  <a href="#" className="flex items-center gap-1">
-    <span className="font-semibold">Shop</span>
-  </a>
+  <Link href="/become-a-vendor" className="flex items-center gap-1">
+    <span className="font-semibold">Become a Vendor</span>
+  </Link>
 
  <div className="mega-menu shop-menu fixed left-1/2 top-20 transform -translate-x-1/2 w-[1100px] 
   bg-white shadow-lg p-8 flex opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all
@@ -105,7 +106,7 @@ useEffect(() => {
         
         <div>
           <a href="#" className="menu-title font-bold text-gray-900 block mb-3 text-lg">Shop Structure</a>
-          <ul className="space-y-2 text-sm text-gray-700">
+           <ul className="space-y-2 text-sm text-gray-700">
             <li><a href="#" className="hover:text-primary">Shop Standard</a></li>
             <li><a href="#" className="hover:text-primary">Shop List</a></li>
             <li><a href="#" className="hover:text-primary">Shop With Category</a></li>
@@ -195,11 +196,11 @@ useEffect(() => {
 </li>
 
 
-                {/* Blog */}
+                {/* Vendor */}
    <li className="relative group">
-  <a href="#" className="block  py-2">
-    <span className="font-semibold">Blog</span>
-  </a>
+  <Link href="/vendor" className="block  py-2">
+    <span className="font-semibold">Vendor</span>
+  </Link>
 
   <div className="fixed left-1/2 top-20 transform -translate-x-1/2 w-[1100px] bg-white shadow-lg p-8 grid grid-cols-4 gap-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 rounded-lg z-50">
     
@@ -291,98 +292,6 @@ useEffect(() => {
     </div>
   </div>
 </li>
-
-
-        {/* Portfolio */}
-  <li className="relative group">
-  <a href="#" className="block py-2">
-    <span className="font-semibold">Portfolio</span>
-  </a>
-
-  <div className="fixed left-1/2 top-20 transform -translate-x-1/2 w-[1200px] bg-white shadow-lg p-9 
-  opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 rounded-lg 
-  z-50">
-    
-    <div className="grid grid-cols-3 gap-4 w-[1290px]">
-      <div className="col-span-2">
-        <ul className="grid grid-cols-5 gap-3">
-          <li>
-            <a href="#">
-              <img src="assets/images/portfolio/icons/portfolio-tiles.svg" alt="" className="w-36 h-36 mx-auto" />
-              <span className="block text-sm mt-1 text-gray-700 text-center">Portfolio Tiles</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="assets/images/portfolio/icons/collage-style-1.svg" alt="" className="w-36 h-36 mx-auto" />
-              <span className="block text-sm mt-1 text-gray-700 text-center">Collage Style 1</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="assets/images/portfolio/icons/collage-style-2.svg" alt="" className="w-36 h-36 mx-auto" />
-              <span className="block text-sm mt-1 text-gray-700 text-center">Collage Style 2</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="assets/images/portfolio/icons/masonry-grid.svg" alt="" className="w-36 h-36 mx-auto" />
-              <span className="block text-sm mt-1 text-gray-700 text-center">Masonry Grid</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="assets/images/portfolio/icons/cobble-style-1.svg" alt="" className="w-36 h-36 mx-auto" />
-              <span className="block text-sm mt-1 text-gray-700 text-center">Cobble Style 1</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="assets/images/portfolio/icons/cobble-style-2.svg" alt="" className="w-36 h-36 mx-auto" />
-              <span className="block text-sm mt-1 text-gray-700 text-center">Cobble Style 2</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="assets/images/portfolio/icons/portfolio-thumbs-slider.svg" alt="" className="w-36 h-36 mx-auto" />
-              <span className="block text-sm mt-1 text-gray-700 text-center">Portfolio Thumbs Slider</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="assets/images/portfolio/icons/portfolio-film-strip.svg" alt="" className="w-36 h-36 mx-auto" />
-              <span className="block text-sm mt-1 text-gray-700 text-center">Portfolio Film Strip</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="assets/images/portfolio/icons/carousel-showcase.svg" alt="" className="w-36 h-36 mx-auto" />
-              <span className="block text-sm mt-1 text-gray-700 text-center">Carousel Showcase</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="assets/images/portfolio/icons/portfolio-split-slider.svg" alt="" className="w-36 h-36 mx-auto" />
-              <span className="block text-sm mt-1 text-gray-700 text-center">Portfolio Split Slider</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div className="border-l pl-4 w-[180px]">
-        <h3 className="font-bold text-lg text-gray-900">Portfolio Details</h3>
-        <ul className="mt-2 space-y-3 text-gray-700 text-md">
-          <li><a href="#">Portfolio Details 1</a></li>
-          <li><a href="#">Portfolio Details 2</a></li>
-          <li><a href="#">Portfolio Details 3</a></li>
-          <li><a href="#">Portfolio Details 4</a></li>
-          <li><a href="#">Portfolio Details 5</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</li>
-
 
 
       {/* Pages */}
@@ -488,14 +397,14 @@ useEffect(() => {
 
                 {/* My Account */}
               <li className="relative group">
-                  <a href="#" className="flex items-center">
+                  <Link href="/account-dashboard" className="flex items-center">
                     <span className="font-semibold">My Account</span>
-                  </a>
+                  </Link>
                    <div className="fixed left-1/2 top-18 transform -translate-x-1/2 ml-40
                   w-[200px] bg-white shadow-lg p-1 hidden group-hover:flex gap-10 z-50">
                    
                     <ul className="p-3 space-y-2 text-gray-600">
-                      <li><a href="/vendor" className="text-sm">Our Brands</a></li>
+                      <li><a href="#" className="text-sm">Dashboard</a></li>
                       <li><a href="#" className="text-sm">Orders</a></li>
                       <li><a href="#" className="text-sm">Orders Details</a></li>
                       <li><a href="#" className="text-sm">Orders Confirmation</a></li>
@@ -900,7 +809,7 @@ useEffect(() => {
                     >4</label>
 
                   <input type="radio" className="opacity-0 absolute pointer-events-none btn-check" name="btnradio1"
-                id="btnradio21" />
+                   id="btnradio21" />
                   <label
                     htmlFor="btnradio21"
                     className="size-[34px] leading-[34px] rounded-full text-center border border-black mr-2.5 mb-1.1"
@@ -1124,7 +1033,7 @@ useEffect(() => {
             <ul className="flex flex-wrap justify-center border-b" id="myTab" role="tablist">
               <li className="nav-item" role="presentation">
                 <button id="shoppingcart" onClick={() => setTab("shoppingcart")}
-                  className={`w-full py-2.5 px-5 text-start font-medium font-Lufga border-b-2 border-transparent mb-[-1px] ${
+                  className={`w-full py-2.5 px-5 text-start font-medium border-b-2 border-transparent mb-[-1px] ${
                     tab === "shoppingcart" ? "!border-black" : "" }`}>
                   Shopping Cart
                   <span
@@ -1178,7 +1087,6 @@ useEffect(() => {
                   <button className="size-7 flex items-center">
                  <img src="assets/icons/remove.png" alt="" className="w-9 h-8" />        
                    </button>
-
                 </div>
               </div>
             </li>
@@ -1186,11 +1094,7 @@ useEffect(() => {
               <div className="py-5 border-b border-border">
                 <div className="flex items-center justify-center">
                   <div className="size-20 rounded-3xl relative overflow-hidden mr-4">
-                    <img
-                      src="assets/images/shop/shop-cart/pic2.jpg"
-                      alt=""
-                      className="w-full"
-                    />
+                    <img src="assets/images/shop/shop-cart/pic2.jpg" alt="pic2" className="w-full" />
                   </div>
                   <div className="mr-5 flex-[1]">
                     <h6 className="mb-2 font-medium">
@@ -1212,11 +1116,7 @@ useEffect(() => {
               <div className="py-5 border-b border-border">
                 <div className="flex items-center justify-center">
                   <div className="size-20 rounded-3xl relative overflow-hidden mr-4">
-                    <img
-                      src="assets/images/shop/shop-cart/pic3.jpg"
-                      alt=""
-                      className="w-full"
-                    />
+                    <img src="assets/images/shop/shop-cart/pic3.jpg" alt="" className="w-full" />
                   </div>
                   <div className="mr-5 flex-[1]">
                     <h6 className="mb-2 font-medium">
