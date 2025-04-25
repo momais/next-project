@@ -5,16 +5,16 @@ export default function Home() {
   return (
   <div>
      
-<div className="overflow-hidden relative p-8 -mb-[10%]">
+<div className="overflow-hidden relative p-8">
   <div>
     <div>
-      <div className="h-[800px] pt-7.5 pb-20 max-3xl:h-[700px] max-3xl:pb-13.5 
-          max-xl:!h-[550px] max-xl:!pb-[75px] max-lg:mb-7.5 max-sm:!my-3.6">
+      <div className="h-[550px] pt-7.5 pb-20 max-3xl:h-[700px] max-3xl:pb-13
+          max-xl:!h-[550px] max-xl:!pb-[75px] max-lg:mb-7">
         
 <div className="flex flex-col lg:flex-row items-center w-full px-4 gap-8">
    {/* Left Side Content */}
   <div className="w-full lg:w-7/12">
-  <div className="max-sm:mb-7.5">
+  <div className="max-sm:mb-7">
     <div className="relative z-[2] pb-[45px] max-xl:pb-5">
       <h1 data-swiper-parallax="-20" className="md:text-6xl sm:text-4xl text-2xl md:mt-0 sm:mt-4 
         md:mr-0 sm:mr-4 font-bold text-left">
@@ -31,7 +31,7 @@ export default function Home() {
       </p>
     </div>
 
-    <div className="content-btn flex flex-nowrap items-center text-center justify-start gap-4 max-sm:gap-2 
+    <div className="flex flex-nowrap items-center text-center justify-start gap-4 max-sm:gap-2 
       max-sm:flex-nowrap overflow-auto" data-swiper-parallax="-60">
       <a href="#" className="btn py-3 px-5 text-base max-sm:text-sm inline-block font-medium 
        leading-[1.2] border border-black bg-black text-white 
@@ -128,7 +128,7 @@ export default function Home() {
 {/* Second Section */}
 
 <div className="relative z-1 bg-yellow-200 py-16 px-8 max-md:px-5 rounded-3xl mt-16 md:mt-2">
-  <div className="container">
+  <div>
     <div className="grid grid-cols-12 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2">
       
       <div className="col-span-4 max-lg:col-span-1 max-md:col-span-1 relative ml-[10%]">
@@ -228,7 +228,7 @@ export default function Home() {
             </div>
 
             <div className="w-1/5 max-sm:w-[78%] flex flex-col items-center">
-              <div className="shop-box">
+              <div>
                 <div className="mb-4 text-center relative overflow-hidden">
                   <img src="assets/images/shop/product/clothes/2.png" alt="Shorts" 
                        className="w-28 h-[130px] max-sm:w-54 max-sm:h-[150px] object-contain mx-auto" />
@@ -241,7 +241,7 @@ export default function Home() {
 
             {/* Product Item 3 */}
             <div className="w-1/5 max-sm:w-[48%] flex flex-col items-center hidden md:block">
-              <div className="shop-box">
+              <div>
                 <div className="mb-4 text-center relative overflow-hidden">
                   <img src="assets/images/shop/product/clothes/3.png" alt="T-Shirt" 
                     className="w-28 h-[130px] max-sm:w-24 max-sm:h-[110px] object-contain mx-auto" />
@@ -253,7 +253,7 @@ export default function Home() {
             </div>
 
             <div className="w-1/5 max-sm:w-[48%] flex flex-col items-center hidden md:block">
-              <div className="shop-box">
+              <div>
                 <div className="mb-4 text-center relative overflow-hidden">
                   <img src="assets/images/shop/product/clothes/4.png" alt="Jeans" 
                    className="w-28 h-[130px] max-sm:w-24 max-sm:h-[110px] object-contain mx-auto" />
@@ -265,7 +265,7 @@ export default function Home() {
             </div>
 
             <div className="w-1/5 max-sm:w-[48%] flex flex-col items-center hidden md:block">
-              <div className="shop-box">
+              <div>
                 <div className="mb-4 text-center relative overflow-hidden">
                   <img src="assets/images/shop/product/clothes/5.png" alt="Coat" 
                     className="w-28 h-[130px] max-sm:w-24 max-sm:h-[110px] object-contain mx-auto" />
@@ -294,12 +294,12 @@ export default function Home() {
             Discover the most trending products in Pixio.
           </p>
           <div className="flex justify-start gap-6">
-            <button className="shop-button-prev">
+            <button>
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35" fill="none">
                 <path d="M32.2645 16.9503H4.08145L10.7508 10.4669C11.2604 9.97176 10.5046 9.1837 9.98813 9.68289L2.35193 17.1063C2.12911 17.3092 2.14686 17.6755 2.35196 17.8903L9.98815 25.3169C10.5021 25.81 11.2622 25.0367 10.7508 24.5328L4.07897 18.0441H32.2645C32.9634 18.0375 32.9994 16.9636 32.2645 16.9503Z" fill="white"></path>
               </svg>
             </button>
-            <button className="shop-button-next">
+            <button>
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35" fill="none">
                 <path d="M2.73549 16.9503H30.9186L24.2492 10.4669C23.7396 9.97176 24.4954 9.1837 25.0119 9.68289L32.6481 17.1063C32.8709 17.3092 32.8531 17.6755 32.648 17.8903L25.0118 25.3169C24.4979 25.81 23.7378 25.0367 24.2492 24.5328L30.921 18.0441H2.73549C2.03663 18.0375 2.00064 16.9636 2.73549 16.9503Z" fill="white"></path>
               </svg>
@@ -314,12 +314,12 @@ export default function Home() {
 {/* Fifth Section */}
 
 <section className="md:mt-[30%] mt-[130%] sm:mt-[100%]">
-  <div className="container p-6">
+  <div className="p-6">
     <div className="flex flex-wrap items-center">
       {/* Left side text content */}
       <div className="lg:w-7/12 w-full">
         <div className="xl:py-6 xl:px-14.5 lg:py-5 sm:px-10 sm:py-10 p-0 max-sm:relative z-[2]">
-          <div className="about-content">
+          <div>
             <div className="sm:mb-10 mt-7 md:mt-0 mb-5 wow fadeInUp block" data-wow-delay="0.4s">
               <h2 className="lg:text-4xl text-xl font-bold sm:mb-2 mb-1.5">Our Mission</h2>
               <p className="mb-4 text-body text-sm pr-7">
@@ -348,25 +348,25 @@ export default function Home() {
 
             <div className="flex justify-start lg:text-start text-center space-x-6 mt-12">
               <div className="w-1/3 wow fadeInUp" data-wow-delay="0.5s">
-                <div className="exp-head">
+                <div>
                   <h2 className="xl:text-6xl lg:text-6xl md:text-4xl text-4xl font-medium">
-                    <span className="counter">40</span>k+
+                    <span>40</span>k+
                   </h2>
                   <span className="sm:text-base text-xs font-bold">Happy Customer</span>
                 </div>
               </div>
               <div className="w-1/3 wow fadeInUp" data-wow-delay="0.6s">
-                <div className="exp-head">
+                <div>
                   <h2 className="xl:text-6xl lg:text-6xl md:text-4xl text-4xl font-medium">
-                    <span className="counter">21</span>+
+                    <span>21</span>+
                   </h2>
                   <span className="sm:text-base text-xs font-bold">Years in Business</span>
                 </div>
               </div>
               <div className="w-1/3 wow fadeInUp" data-wow-delay="0.7s">
-                <div className="exp-head">
+                <div>
                   <h2 className="xl:text-6xl lg:text-6xl md:text-4xl text-4xl font-medium">
-                    <span className="counter">98</span>%
+                    <span>98</span>%
                   </h2>
                   <span className="sm:text-base text-xs font-bold">Return Clients</span>
                 </div>
@@ -401,7 +401,7 @@ export default function Home() {
   </div>
 
   <div className="container max-w-[1200px] mx-auto">
-    <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6"> {/* Corrected spacing */}
+    <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6">
 
       <div className="flex items-center justify-center bg-white h-16 md:h-20 rounded-xl shadow-md p-3">
         <img src="assets/images/companies/logo1.png" alt="Company 1" className="w-16 md:w-20" />

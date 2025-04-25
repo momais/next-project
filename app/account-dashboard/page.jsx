@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -16,6 +16,15 @@ import {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip);
 
 export default function Dashboard() {
+
+const router = useRouter();
+
+  const handleLogout = () => {
+    // Clear local storage
+    localStorage.removeItem('user');
+    // Redirect to login page
+    router.push('/login');
+  };
 
   const [user, setUser] = useState({});
 
@@ -161,9 +170,9 @@ export default function Dashboard() {
               <div className="mb-2 p-2">
                 <p className="mb-4 text-body">Hello <strong className="text-black">John Doe
                 </strong> (not <strong className="text-black">John Doe</strong>? 
-                  <Link href="/login" className="underline hover:text-red-700 ml-2">
+                  <button onClick={handleLogout} className="underline hover:text-red-700 ml-2">
                   Log out
-                  </Link>)
+                  </button>)
                 </p>
                 <p>From your account dashboard you can view your
                  <a href="#" className="underline hover:text-red-700">recent orders</a>, manage your 
