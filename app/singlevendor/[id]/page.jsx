@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export default function ProductCarousel() {
-  const { id } = useParams(); // id1, id2, etc.
+  const { id } = useParams();
   const [clickedImg, setClickedImg] = useState(null);
  const baseUrl = "https://letsenjoyksa.com/imgupload/";
 
@@ -31,7 +31,7 @@ export default function ProductCarousel() {
  <div className="container mx-auto">
      <div className="flex flex-col sm:flex-row justify-between px-2 mb-4 gap-2 sm:gap-0">
   <nav>
-    <ul className="flex items-center flex-wrap">
+    <ul className="flex items-center flex-wrap mt-4">
       <li className="mr-2 text-[16px] font-semibold">
         <a href="/">Home</a>
       </li>
@@ -42,7 +42,7 @@ export default function ProductCarousel() {
     </ul>
   </nav>
 
-  <div className="flex md:gap-7 gap-2 md:text-[16px] text-[14px] text-gray-600">
+  <div className="flex md:gap-7 gap-2 md:text-[16px] text-[14px] text-gray-600 mt-4">
     <button>PREV</button>
     <span>/</span>
     <button>NEXT</button>
@@ -77,8 +77,7 @@ export default function ProductCarousel() {
           {Array(5).fill(clickedImg).map((img, index) => (
             <SwiperSlide key={index}>
               <div className="group overflow-hidden rounded-3xl relative">
-                <img
-                  src={img}
+                <img src="https://placehold.co/100x100"
                   alt={`Clicked Image`}
                   className="w-full h-[600px] object-cover"
                 />

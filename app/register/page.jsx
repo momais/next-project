@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
 
-    const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
   const [username, setUsername] = useState('');
@@ -16,7 +16,7 @@ export default function LoginPage() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5050/register", {
+    fetch("https://next-project-rk61bpwa3-muhammad-omais-projects.vercel.app/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

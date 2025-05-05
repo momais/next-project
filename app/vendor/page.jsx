@@ -117,7 +117,7 @@ const [products, setProducts] = useState([]);
     {/* Right Side: View Icons */}
     <div className="flex items-center gap-3">
       {/* Grid View Icon */}
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-7 h-7 opacity-50">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-7 h-7 opacity-50">
   <rect x="4" y="4" width="4" height="4" rx="1" fill="gray"/>
   <rect x="4" y="10" width="4" height="4" rx="1" fill="gray"/>
   <rect x="4" y="16" width="4" height="4" rx="1" fill="gray"/>
@@ -580,8 +580,7 @@ const [products, setProducts] = useState([]);
 
    <Link href={`/singlevendor/id${index + 1}`}>
                 {product.company_picture && (
-                  <img
-                    src={`${baseUrl}${product.company_picture.trim().replace(",", "")}`}
+                  <img src="https://placehold.co/100x100"
                     alt={product.title_user}
                     className="w-full h-48 object-cover rounded-2xl cursor-pointer"
                   />

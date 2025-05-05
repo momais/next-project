@@ -18,7 +18,7 @@ app.get('/cashbackengine_users', async (req, res) => {
   }
 });
 
-//  Register User
+//  Register 
 app.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -72,8 +72,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
-// Start the server
 const PORT = 5050;
 app.listen(PORT, () => {
   console.log(`Database server is running on port ${PORT}...`);

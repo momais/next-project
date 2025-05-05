@@ -15,7 +15,7 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5050/login", {
+    fetch("https://next-project-rk61bpwa3-muhammad-omais-projects.vercel.app/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export default function LoginPage() {
 
         if (data.success) {
           alert("Login Successful");
-         localStorage.setItem("user", JSON.stringify(data.user));  // Save user data
+         localStorage.setItem("user", JSON.stringify(data.user));
            router.push('/account-dashboard');
         } else {
           alert(data.message || "Login failed");
@@ -41,8 +41,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="page-content overflow-x-hidden">
-      <section className="px-4">
+
+<div className="page-content overflow-x-hidden">
+ <section className="px-4">
         <div className="flex flex-col lg:flex-row items-center justify-center">
           {/* small Left Side */}
   <div className="lg:hidden w-full relative bg-[#FFEDD4] start-side-content p-4 flex flex-col items-start">

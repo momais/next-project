@@ -59,7 +59,7 @@ useEffect(() => {
                 
                 {/* Home */}
                 <li className="relative group">
-                  <Link href="#" className="flex items-center">
+                  <Link href="/" className="flex items-center">
                     <span className="font-semibold">Home</span>
                   </Link>
                   <div className="fixed left-1/2 top-20 transform -translate-x-1/2 w-[850px] bg-white 
