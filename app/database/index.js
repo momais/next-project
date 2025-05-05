@@ -5,7 +5,7 @@ import pool from './config.js';
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:3000", "https://next-project-rk61bpwa3-muhammad-omais-projects.vercel.app"],
+  origin: ["https://next-project-rk61bpwa3-muhammad-omais-projects.vercel.app"],
   methods: ["GET", "POST"],
 }));
 
