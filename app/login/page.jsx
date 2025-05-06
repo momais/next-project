@@ -13,22 +13,26 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleLogin(e) {
-    e.preventDefault();
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
+ async function handleLogin(e) {
+  e.preventDefault();
 
-    const data = await res.json();
-    if (data.success) {
-      alert('Login success');
-    } else {
-      alert(data.message);
-    }
+  const res = await fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    localStorage.setItem('user', JSON.stringify(data.user));
+
+    router.push('/account-dashboard');
+  } else {
+    alert(data.message || 'Login failed');
   }
- 
+}
+
   return (
 
 <div className="overflow-x-hidden">

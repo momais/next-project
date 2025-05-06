@@ -20,9 +20,7 @@ export default function Dashboard() {
 const router = useRouter();
 
   const handleLogout = () => {
-    // Clear local storage
     localStorage.removeItem('user');
-    // Redirect to login page
     router.push('/login');
   };
 
@@ -83,9 +81,9 @@ const router = useRouter();
   };
 
   return (
-  <div>
 
-<div className="w-full overflow-hidden mb-[26%]">
+<div>
+ <div className="w-full overflow-hidden mb-[26%]">
       <div className="absolute top-20 left-0 w-screen min-h-[250px] max-sm:min-h-[230px] bg-cover 
       bg-center bg-no-repeat before:content-[''] before:absolute before:inset-0 before:bg-black 
       before:opacity-40" style={{ backgroundImage: "url('/assets/bg1.jpg')" }}>

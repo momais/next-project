@@ -404,7 +404,7 @@ useEffect(() => {
                   w-[200px] bg-white shadow-lg p-1 hidden group-hover:flex gap-10 z-50">
                    
                     <ul className="p-3 space-y-2 text-gray-600">
-                      <li><a href="#" className="text-sm">Dashboard</a></li>
+                      <li><a href="/account-dashboard" className="text-sm">Dashboard</a></li>
                       <li><a href="#" className="text-sm">Orders</a></li>
                       <li><a href="#" className="text-sm">Orders Details</a></li>
                       <li><a href="#" className="text-sm">Orders Confirmation</a></li>

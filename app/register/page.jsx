@@ -25,6 +25,7 @@ export default function LoginPage() {
     const data = await res.json();
     if (data.success) {
       alert('Registered successfully!');
+        router.push('/login');
     } else {
       alert(data.message);
     }

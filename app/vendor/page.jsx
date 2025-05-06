@@ -13,11 +13,11 @@ export default function vendor() {
   const [latestOpen, setLatestOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
 
-const [products, setProducts] = useState([]);
+ const [products, setProducts] = useState([]);
  const baseUrl = "https://letsenjoyksa.com/imgupload/";
 
   useEffect(() => {
-    fetch("http://localhost:5050/cashbackengine_users")
+    fetch("/api/vendor")
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched Data:", data);
