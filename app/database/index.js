@@ -3,17 +3,8 @@ import cors from 'cors';
 import pool from './config.js';
 
 const app = express();
-
-app.use(cors({
-  origin: ["https://next-project-rk61bpwa3-muhammad-omais-projects.vercel.app"],
-  methods: ["GET", "POST"],
-}));
-
+app.use(cors());
 app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send("Backend is running");
-});
 
 app.get('/cashbackengine_users', async (req, res) => {
   try {
@@ -27,7 +18,7 @@ app.get('/cashbackengine_users', async (req, res) => {
   }
 });
 
-//  Register
+//  Register 
 app.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -57,7 +48,6 @@ app.post('/register', async (req, res) => {
   }
 });
 
-//  Login 
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -67,10 +57,10 @@ app.post('/login', async (req, res) => {
 
   try {
     const [rows] = await pool.query(
-      'SELECT * FROM cashbackengine_users WHERE email = ? AND password = ? AND usertype = 3',
-      [email, password]
-    );
-
+  'SELECT * FROM cashbackengine_users WHERE email = ? AND password = ? AND usertype = 3',
+  [email, password]
+);
+    
     if (rows.length > 0) {
       res.json({ success: true, message: 'Login successful', user: rows[0] });
     } else {
@@ -82,7 +72,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5050;
+const PORT = 5050;
 app.listen(PORT, () => {
   console.log(`Database server is running on port ${PORT}...`);
 });

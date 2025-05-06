@@ -9,37 +9,26 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegister = async (e) => {
+  async function handleRegister(e) {
     e.preventDefault();
-
-    fetch("https://next-project-rk61bpwa3-muhammad-omais-projects.vercel.app/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const res = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, email, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Response from server:", data); // See full response
+    });
 
-        if (data.message === "Registration successful") {
-          alert("Registration Successful");
-          // You can redirect if needed:
-             router.push('/login');
-        } else {
-          alert(data.error || "Something went wrong");
-        }
-      })
-      .catch((err) => {
-        console.error("Registration Error:", err);
-        alert("Error during registration");
-      });
-  };
+    const data = await res.json();
+    if (data.success) {
+      alert('Registered successfully!');
+    } else {
+      alert(data.message);
+    }
+  }
 
   return (
     <div className="page-content overflow-x-hidden">

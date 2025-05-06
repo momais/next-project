@@ -9,40 +9,29 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async (e) => {
+  async function handleLogin(e) {
     e.preventDefault();
-
-    fetch("https://next-project-rk61bpwa3-muhammad-omais-projects.vercel.app/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Login Response:", data);
+    });
 
-        if (data.success) {
-          alert("Login Successful");
-         localStorage.setItem("user", JSON.stringify(data.user));
-           router.push('/account-dashboard');
-        } else {
-          alert(data.message || "Login failed");
-        }
-      })
-      .catch((err) => {
-        console.error("Login Error:", err);
-        alert("Something went wrong while logging in");
-      });
-  };
-
+    const data = await res.json();
+    if (data.success) {
+      alert('Login success');
+    } else {
+      alert(data.message);
+    }
+  }
+ 
   return (
 
-<div className="page-content overflow-x-hidden">
+<div className="overflow-x-hidden">
  <section className="px-4">
         <div className="flex flex-col lg:flex-row items-center justify-center">
           {/* small Left Side */}
