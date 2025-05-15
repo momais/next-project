@@ -1,7 +1,5 @@
-// app/database/index.js
 import pool from './config.js';
 
-// Used by the register route
 export async function registerUser(username, email, password) {
   const [existing] = await pool.query(
     'SELECT * FROM cashbackengine_users WHERE username = ? OR email = ?',
