@@ -1,4 +1,6 @@
 'use client';
+
+import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from "lucide-react";
@@ -6,32 +8,24 @@ import Link from "next/link";
 
 export default function LoginPage() {
 
-  const [showPassword, setShowPassword] = useState(false);
-
   const router = useRouter();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
- async function handleLogin(e) {
-  e.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const res = await signIn('credentials', {
+      redirect: false,
+      email,
+      password
+    });
 
-  const res = await fetch('/api/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
-  });
-
-  const data = await res.json();
-
-  if (data.success) {
-    localStorage.setItem('user', JSON.stringify(data.user));
-
-    router.push('/account-dashboard');
-  } else {
-    alert(data.message || 'Login failed');
-  }
-}
+    if (res.ok) {
+      router.push('/account-dashboard');
+    } else {
+      alert("Invalid credentials");
+    }
+  };
 
   return (
 
@@ -55,10 +49,8 @@ export default function LoginPage() {
     </nav>
   </div>
 
-  {/* Image with correct size and placement */}
   <div className="relative z-10 flex justify-between w-full items-center">
     <div className="text-left w-1/2">
-      {/* Left side text */}
     </div>
     <div className="flex justify-end -mt-40">
       <img src="assets/images/registration/pic3.png" className="w-[120px] mt-16" alt="Account" />
@@ -109,7 +101,7 @@ export default function LoginPage() {
                     value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
                 
-             <div className="mb-4">
+     <div className="mb-4">
       <label className="block font-medium mb-2">Password</label>
       <div className="relative z-1">
         <input

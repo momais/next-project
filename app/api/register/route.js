@@ -1,22 +1,23 @@
 // app/api/register/route.js
-import { registerUser } from '@/app/database/index';
+import pool from '@/app/database/config';
+import { NextResponse } from 'next/server';
 
 export async function POST(req) {
   const { username, email, password } = await req.json();
 
-  if (!username || !email || !password) {
-    return Response.json({ success: false, message: 'All fields are required' }, { status: 400 });
+  const [existing] = await pool.query(
+    'SELECT * FROM cashbackengine_users WHERE email = ? OR username = ?',
+    [email, username]
+  );
+
+  if (existing.length > 0) {
+    return NextResponse.json({ success: false, message: 'Email or username already exists' });
   }
 
-  try {
-    const result = await registerUser(username, email, password);
-    if (result.success) {
-      return Response.json({ success: true, message: result.message });
-    } else {
-      return Response.json({ success: false, message: result.message }, { status: 409 });
-    }
-  } catch (error) {
-    console.error('Register Error:', error);
-    return Response.json({ success: false, message: 'Registration failed' }, { status: 500 });
-  }
+  await pool.query(
+    'INSERT INTO cashbackengine_users (username, email, password) VALUES (?, ?, ?)',
+    [username, email, password]
+  );
+
+  return NextResponse.json({ success: true, message: 'Registration successful' });
 }

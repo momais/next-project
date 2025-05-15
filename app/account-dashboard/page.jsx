@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Line } from 'react-chartjs-2';
 import {
@@ -17,21 +18,24 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, 
 
 export default function Dashboard() {
 
-const router = useRouter();
+  const router = useRouter();
 
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    router.push('/login');
-  };
-
-  const [user, setUser] = useState({});
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      setUser(JSON.parse(userData));
+    if (status === 'unauthenticated') {
+      router.push('/login');
     }
-  }, []);
+  }, [status, router]);
+
+  if (status === 'loading') {
+    return <div className="text-center mt-10">Loading...</div>;
+  }
+
+  const handleLogout = () => {
+    signOut({ callbackUrl: '/login' });
+  };
 
  const data = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'August'],

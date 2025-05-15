@@ -1,4 +1,3 @@
-// app/api/vendor/route.js
 import pool from '@/app/database/config';
 import { NextResponse } from 'next/server';
 

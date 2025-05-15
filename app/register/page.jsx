@@ -2,39 +2,38 @@
 import { useState } from 'react';
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
 
-  const [showPassword, setShowPassword] = useState(false);
-
-  const router = useRouter();
-
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
-  async function handleRegister(e) {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    const res = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, email, password }),
+    const res = await signIn('credentials', {
+      username,
+      email,
+      password,
+      isRegister: "true", // Custom flag to trigger registration
+      redirect: false,
     });
 
-    const data = await res.json();
-    if (data.success) {
-      alert('Registered successfully!');
-        router.push('/login');
+    if (res?.ok) {
+      router.push('/account-dashboard');
     } else {
-      alert(data.message);
+      alert("Registration failed: " + res?.error);
     }
-  }
+  };
 
   return (
-    <div className="page-content overflow-x-hidden">
-      <section className="px-4">
-        <div className="flex flex-col lg:flex-row items-center justify-center">
+
+<div className="page-content overflow-x-hidden">
+ <section className="px-4">
+  <div className="flex flex-col lg:flex-row items-center justify-center">
           {/* small Left Side */}
   <div className="lg:hidden w-full relative bg-[#FFEDD4] start-side-content p-4 flex flex-col items-start">
   <div className="dz-bnr-inr-entry text-center mt-5">

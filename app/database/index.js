@@ -1,6 +1,7 @@
 // app/database/index.js
 import pool from './config.js';
 
+// Used by the register route
 export async function registerUser(username, email, password) {
   const [existing] = await pool.query(
     'SELECT * FROM cashbackengine_users WHERE username = ? OR email = ?',
@@ -19,15 +20,16 @@ export async function registerUser(username, email, password) {
   return { success: true, message: 'Registration successful' };
 }
 
-export async function loginUser(email, password) {
+// Used by NextAuth credentials provider
+export async function getUserByEmail(email) {
   const [rows] = await pool.query(
-    'SELECT * FROM cashbackengine_users WHERE email = ? AND password = ? AND usertype = 3',
-    [email, password]
+    'SELECT * FROM cashbackengine_users WHERE email = ? AND usertype = 3',
+    [email]
   );
 
   if (rows.length > 0) {
-    return { success: true, user: rows[0] };
-  } else {
-    return { success: false, message: 'Invalid email or password' };
+    return rows[0]; // Return the user object for authentication
   }
+
+  return null;
 }
