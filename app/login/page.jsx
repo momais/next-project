@@ -12,20 +12,21 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     const res = await signIn('credentials', {
       redirect: false,
       email,
-      password
+      password,
     });
 
     if (res.ok) {
       router.push('/account-dashboard');
     } else {
-      alert("Invalid credentials");
+      alert('Login failed');
     }
-  };
+  }
+
 
   return (
 

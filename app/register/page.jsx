@@ -1,34 +1,33 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
 
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter();
 
-  const handleRegister = async (e) => {
+  async function handleRegister(e) {
     e.preventDefault();
-    const res = await signIn('credentials', {
-      username,
-      email,
-      password,
-      isRegister: "true", // Custom flag to trigger registration
-      redirect: false,
+    const res = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, email, password }),
     });
 
-    if (res?.ok) {
-      router.push('/account-dashboard');
+    const data = await res.json();
+    if (data.success) {
+      alert('Registration successful');
+      router.push('/login');
     } else {
-      alert("Registration failed: " + res?.error);
+      alert(data.message);
     }
-  };
-
+  }
+  
   return (
 
 <div className="page-content overflow-x-hidden">

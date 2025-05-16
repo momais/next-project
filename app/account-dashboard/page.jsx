@@ -17,22 +17,18 @@ import {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip);
 
 export default function Dashboard() {
+
   const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/login");
+    if (status === 'unauthenticated') {
+      router.push('/login');
     }
-  }, [status, router]);
+  }, [status]);
 
-  if (status === "loading") {
-    return <div className="text-center mt-10">Loading...</div>;
-  }
+  if (status === 'loading') return <div>Loading...</div>;
 
-  const handleLogout = () => {
-    signOut({ callbackUrl: "/login" });
-  };
 
  const data = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'August'],
