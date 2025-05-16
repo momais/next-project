@@ -1,28 +1,29 @@
+// app/api/auth/[...nextauth]/route.js
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { getUserByEmail } from "@/app/database/index";
-import bcrypt from "bcrypt";
+import { loginUser } from "@/app/database/index.js";
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
       async authorize(credentials) {
-        const user = await getUserByEmail(credentials.email);
-        if (!user) throw new Error("User not found");
+        const { email, password } = credentials;
+        const result = await loginUser(email, password);
 
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
+        if (result.success) {
+          return {
+            id: result.user.id,
+            name: result.user.username,
+            email: result.user.email,
+          };
+        }
 
-        if (!isPasswordValid) throw new Error("Invalid credentials");
-
-        return {
-          id: user.id,
-          name: user.username,
-          email: user.email,
-        };
+        return null;
       },
     }),
   ],
@@ -33,6 +34,7 @@ const handler = NextAuth({
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
 
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
