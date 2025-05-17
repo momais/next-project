@@ -1,18 +1,19 @@
 'use client';
+
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
 
-  const router = useRouter();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
-  async function handleRegister(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     const res = await fetch('/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -20,13 +21,9 @@ export default function LoginPage() {
     });
 
     const data = await res.json();
-    if (data.success) {
-      alert('Registration successful');
-      router.push('/login');
-    } else {
-      alert(data.message);
-    }
-  }
+    if (res.ok) setMessage('Registered successfully');
+    else setMessage(data.error || 'Error registering');
+  };
   
   return (
 

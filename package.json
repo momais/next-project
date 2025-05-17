@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "build": "next build",
-    "server": "nodemon app/database/index.js"
+    "build": "next build"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

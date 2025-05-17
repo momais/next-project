@@ -8,24 +8,22 @@ import Link from "next/link";
 
 export default function LoginPage() {
 
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleSubmit(e) {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const res = await signIn('credentials', {
-      redirect: false,
+      redirect: true,
       email,
       password,
+      callbackUrl: '/',
     });
 
-    if (res.ok) {
-      router.push('/account-dashboard');
-    } else {
-      alert('Login failed');
+    if (res?.error) {
+      alert('Login failed: ' + res.error);
     }
-  }
+  };
 
 
   return (

@@ -1,12 +1,14 @@
-import { createUser } from "@/app/database/index";
+// app/api/register/route.js
+import { registerUser } from "@/app/database/index";
 
 export async function POST(req) {
-  const { username, email, password } = await req.json();
-
-  const result = await createUser(username, email, password);
-  if (result.success) {
-    return Response.json({ success: true });
-  } else {
-    return Response.json({ success: false, message: result.message });
+  try {
+    const { username, email, password } = await req.json();
+    await registerUser(username, email, password);
+    return new Response(JSON.stringify({ message: "User registered successfully" }), {
+      status: 200,
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), { status: 400 });
   }
 }
