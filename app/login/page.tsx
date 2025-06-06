@@ -24,7 +24,7 @@ export default function LoginPage() {
     }
   }, [status, session, router]);
 
-  // Check for error messages from NextAuth
+  // Check for error from NextAuth
   useEffect(() => {
     const error = searchParams.get('error');
     if (error) {
@@ -82,7 +82,6 @@ export default function LoginPage() {
 
       if (result.ok) {
         setSuccessMessage('Login successful! Redirecting...');
-        // Clear form
         setEmail('');
         setPassword('');
         // Redirect after a short delay
