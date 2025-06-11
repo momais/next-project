@@ -1,16 +1,35 @@
-// app/api/auth/[...nextauth]/route.ts
-<<<<<<< HEAD
-import NextAuth, { AuthOptions } from 'next-auth';
+import NextAuth from 'next-auth';
+import type { NextAuthConfig } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import FacebookProvider from 'next-auth/providers/facebook';
 import { findUserByEmail } from '@/app/database';
 import bcrypt from 'bcrypt';
 
-if (!process.env.NEXTAUTH_SECRET) {
-  throw new Error('NEXTAUTH_SECRET is not set in environment variables');
-}
-
-export const authOptions: AuthOptions = {
+export const authConfig = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+    }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID || '',
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '',
+      authorization: {
+        params: {
+          scope: 'email,public_profile'
+        }
+      },
+      profile(profile) {
+        return {
+          id: profile.id,
+          name: profile.name,
+          email: profile.email,
+          usertype: 1, // Default usertype for social login
+          emailVerified: profile.email_verified ? new Date() : null,
+        };
+      },
+    }),
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -25,8 +44,7 @@ export const authOptions: AuthOptions = {
 
         try {
           console.log('Attempting to find user:', credentials.email);
-          // Find user by email
-          const user = await findUserByEmail(credentials.email);
+          const user = await findUserByEmail(credentials.email as string);
           
           if (!user) {
             console.log('User not found:', credentials.email);
@@ -34,14 +52,9 @@ export const authOptions: AuthOptions = {
           }
 
           console.log('User found, comparing passwords');
-          console.log('Stored hash:', user.password);
+          const salt = user.password.substring(0, 29);
+          const hashedInput = await bcrypt.hash(credentials.password as string, salt);
           
-          // Hash the input password with the same salt
-          const salt = user.password.substring(0, 29); // Get the salt from stored hash
-          const hashedInput = await bcrypt.hash(credentials.password, salt);
-          console.log('Generated hash for input:', hashedInput);
-          
-          // Compare the hashes
           const isValid = hashedInput === user.password;
           console.log('Password comparison result:', isValid);
           
@@ -50,13 +63,12 @@ export const authOptions: AuthOptions = {
             return null;
           }
 
-          console.log('Password verified successfully');
-          // Return user object without password
           return {
             id: user.user_id.toString(),
             name: user.username,
             email: user.email,
-            usertype: user.usertype
+            usertype: user.usertype,
+            emailVerified: null
           };
         } catch (error) {
           console.error('Authentication error:', error);
@@ -72,46 +84,44 @@ export const authOptions: AuthOptions = {
   },
   session: {
     strategy: 'jwt',
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 30 * 24 * 60 * 60,
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
         token.usertype = user.usertype;
       }
+      if (account) {
+        token.provider = account.provider;
+      }
       return token;
     },
     async session({ session, token }) {
       if (token) {
         session.user = {
-          id: token.id,
-          name: token.name,
-          email: token.email,
-          usertype: token.usertype
+          id: token.id as string,
+          name: token.name as string,
+          email: token.email as string,
+          usertype: token.usertype as number,
+          emailVerified: null
         };
       }
       return session;
     }
   },
   events: {
-    async signIn({ user }) {
-      console.log('User signed in:', user.email);
+    async signIn({ user, account }) {
+      console.log('User signed in:', user.email, 'via', account?.provider);
     },
-    async signOut({ token }) {
-      console.log('User signed out:', token.email);
+    async signOut() {
+      console.log('User signed out');
     }
   },
   debug: process.env.NODE_ENV === 'development',
   secret: process.env.NEXTAUTH_SECRET
-};
+} satisfies NextAuthConfig;
 
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
-=======
-import { handlers } from '@/app/auth';
-
-export const { GET, POST } = handlers;
->>>>>>> 4caa4617078b9d6d3e9d9b17b2dd37dd30393525
+export const { auth, signIn, signOut, handlers } = NextAuth(authConfig); 

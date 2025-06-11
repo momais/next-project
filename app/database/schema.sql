@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS cashbackengine_users (
   usertype INT DEFAULT 3,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+<<<<<<< HEAD
 );
 
 CREATE TABLE IF NOT EXISTS users (
@@ -46,4 +47,6 @@ CREATE TABLE IF NOT EXISTS verification_tokens (
   token VARCHAR(255) NOT NULL,
   expires DATETIME NOT NULL,
   PRIMARY KEY (identifier, token)
+=======
+>>>>>>> 4caa4617078b9d6d3e9d9b17b2dd37dd30393525
 ); 

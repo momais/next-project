@@ -9,6 +9,7 @@ type HeaderProps = {
   cartIcon?: ReactNode;
 }
 
+<<<<<<< HEAD
 const Header = ({ searchIcon, heartIcon, cartIcon }: HeaderProps) => {
   const [tab, setTab] = useState<string>("");
   const [showWishlist, setShowWishlist] = useState<boolean>(true);
@@ -20,6 +21,17 @@ const Header = ({ searchIcon, heartIcon, cartIcon }: HeaderProps) => {
   const [values, setValues] = useState<number[]>([0, 400]);
   const [quantity, setQuantity] = useState<number>(1);
 
+=======
+const [tab, setTab] = useState("");
+  const [showWishlist, setShowWishlist] = useState(true);
+  const [isSearchOpen, setSearchOpen] = useState(false);
+  const [isCartOpen, setCartOpen] = useState(false);
+  const [isWishlistOpen, setWishlistOpen] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [selected, setSelected] = useState("btnradio11");
+
+const [values, setValues] = useState([0, 400]);
+>>>>>>> 4caa4617078b9d6d3e9d9b17b2dd37dd30393525
   const minLimit = 0;
   const maxLimit = 400;
 
@@ -298,6 +310,7 @@ const Header = ({ searchIcon, heartIcon, cartIcon }: HeaderProps) => {
   </li>
 
 
+<<<<<<< HEAD
         {/* Pages */}
   <li className="relative group">
     <a href="#" className="block py-2">
@@ -397,6 +410,36 @@ const Header = ({ searchIcon, heartIcon, cartIcon }: HeaderProps) => {
       </div>
     </div>
   </li>
+=======
+                {/* My Account */}
+              <li className="relative group">
+                  <Link href="/account-profile" className="flex items-center">
+                    <span className="font-semibold">My Account</span>
+                  </Link>
+                   <div className="fixed left-1/2 top-18 transform -translate-x-1/2 ml-40
+                  w-[200px] bg-white shadow-lg p-1 hidden group-hover:flex gap-10 z-50">
+                   
+                    <ul className="p-3 space-y-2 text-gray-600">
+                      <li><a href="/account-dashboard" className="text-sm">Dashboard</a></li>
+                      <li><a href="/account-orders" className="text-sm">Orders</a></li>
+                      <li><a href="#" className="text-sm">Orders Details</a></li>
+                      <li><a href="#" className="text-sm">Orders Confirmation</a></li>
+                      <li><a href="#" className="text-sm">Downloads</a></li>
+                      <li><a href="#" className="text-sm">Return Request</a></li>
+                      <li><a href="#" className="text-sm">Return Request Detail</a></li>
+                      <li><a href="#" className="text-sm">Return Request Confirmed</a></li>
+                      <li><a href="#" className="text-sm">Profile</a></li>
+                      <li><a href="#" className="text-sm">Address</a></li>
+                      <li><a href="#" className="text-sm">Shipping methods</a></li>
+                      <li><a href="#" className="text-sm">Payment Methods</a></li>
+                      <li><a href="#" className="text-sm">Review</a></li>
+                      <li><a href="#" className="text-sm">Billing address</a></li>
+                      <li><a href="#" className="text-sm">Shipping address</a></li>
+                      <li><a href="#" className="text-sm">Cancellation Requests</a></li>
+                    </ul>
+                  </div>
+                </li>
+>>>>>>> 4caa4617078b9d6d3e9d9b17b2dd37dd30393525
 
 
           {/* My Account */}
