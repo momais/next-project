@@ -1,7 +1,62 @@
 "use client";
-import React from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function BecomeVendor() {
+  const [formData, setFormData] = useState({
+    brandName: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/vendor/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: formData.brandName,
+          email: formData.email,
+          password: formData.password,
+          phone: formData.phone,
+          usertype: 2 // Vendor type
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Registration failed');
+      }
+
+      // Redirect to vendor dashboard or login page
+      router.push('/login?message=Registration successful! Please login.');
+    } catch (err) {
+      setError(err.message || 'Something went wrong');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
   <div className="page-content">
      
@@ -33,29 +88,68 @@ export default function BecomeVendor() {
         <div className="w-full lg:w-[50%] bg-white rounded-md mb-6 md:-ml-14 -ml-0">
           <h2 className="text-2xl md:text-4xl font-semibold mb-2 relative w-fit mx-auto md:mx-0 text-center md:text-left">
           Vendor Details
-        <div className="absolute left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 bottom-0 md:top-14
-        top-12 w-[150%] md:w-[110%] h-[3px] bg-red-400"></div>
-        </h2>
+          <div className="absolute left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 bottom-0 md:top-14
+          top-12 w-[150%] md:w-[110%] h-[3px] bg-red-400"></div>
+          </h2>
 
-          <form className="space-y-4 mt-9">
-            <input type="text" placeholder="Brand Name" className="md:w-[85%] w-[100%] p-4 
-            placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-0" />
-            <input type="email" placeholder="Email" className="md:w-[85%] w-[100%] p-4 placeholder-gray-500 
-            border border-gray-300 rounded-md focus:outline-none focus:ring-0" />
-            <input type="text" placeholder="Phone" className="md:w-[85%] w-[100%] p-4 placeholder-gray-500 
-            border border-gray-300 rounded-md focus:outline-none focus:ring-0" />
-            <input type="password" placeholder="Password" className="md:w-[85%] w-[100%] p-4 
-            placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-0" />
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+              <span className="block sm:inline">{error}</span>
+            </div>
+          )}
 
-            <button className="md:w-[85%] w-[100%] bg-red-500 text-white py-3 rounded-md font-semibold">
-              Get Started
+          <form onSubmit={handleSubmit} className="space-y-4 mt-9">
+            <input 
+              type="text" 
+              name="brandName"
+              value={formData.brandName}
+              onChange={handleChange}
+              placeholder="Brand Name" 
+              className="md:w-[85%] w-[100%] p-4 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-0"
+              required 
+            />
+            <input 
+              type="email" 
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email" 
+              className="md:w-[85%] w-[100%] p-4 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-0"
+              required 
+            />
+            <input 
+              type="tel" 
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Phone" 
+              className="md:w-[85%] w-[100%] p-4 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-0"
+              required 
+            />
+            <input 
+              type="password" 
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Password" 
+              className="md:w-[85%] w-[100%] p-4 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-0"
+              required 
+              minLength={6}
+            />
+
+            <button 
+              type="submit" 
+              disabled={loading}
+              className={`md:w-[85%] w-[100%] bg-red-500 text-white py-3 rounded-md font-semibold ${loading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-red-600'}`}
+            >
+              {loading ? 'Processing...' : 'Get Started'}
             </button>
           </form>
 
           <p className="text-sm md:text-base text-center md:text-left mt-4 w-[80%] md:w-[85%]">
             By registering, you consent to our{' '}
-            <a href="#" className="text-blue-700">Privacy Policy</a> and{' '}
-            <a href="#" className="text-blue-700">End User License Agreement</a>.
+            <Link href="/privacy-policy" className="text-blue-700 hover:underline">Privacy Policy</Link> and{' '}
+            <Link href="/terms" className="text-blue-700 hover:underline">End User License Agreement</Link>.
           </p>
         </div>
 
@@ -71,7 +165,7 @@ export default function BecomeVendor() {
   <h2 className="text-2xl md:text-4xl font-semibold mb-2 relative w-fit mx-auto md:mx-0 text-center md:text-left">
   How we can help our partners</h2>
 <div className="w-60 h-[3px] bg-red-500 mt-4 mb-6 mx-auto md:mx-0"></div>
-  <p className="font-base md:text-left text-center">The Things We’ve Made Happen That <br /> Work A Little Too Well</p>
+  <p className="font-base md:text-left text-center">The Things We've Made Happen That <br /> Work A Little Too Well</p>
 
   <div className="grid lg:grid-cols-4 sm:grid-cols-1 md:gap-12 gap-3 mt-8">
     <div className="flex space-x-3 justify-center lg:justify-start bg-red-100 lg:bg-transparent p-6 md:p-0">
