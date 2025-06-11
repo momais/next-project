@@ -9,7 +9,6 @@ type HeaderProps = {
   cartIcon?: ReactNode;
 }
 
-<<<<<<< HEAD
 const Header = ({ searchIcon, heartIcon, cartIcon }: HeaderProps) => {
   const [tab, setTab] = useState<string>("");
   const [showWishlist, setShowWishlist] = useState<boolean>(true);
@@ -21,17 +20,6 @@ const Header = ({ searchIcon, heartIcon, cartIcon }: HeaderProps) => {
   const [values, setValues] = useState<number[]>([0, 400]);
   const [quantity, setQuantity] = useState<number>(1);
 
-=======
-const [tab, setTab] = useState("");
-  const [showWishlist, setShowWishlist] = useState(true);
-  const [isSearchOpen, setSearchOpen] = useState(false);
-  const [isCartOpen, setCartOpen] = useState(false);
-  const [isWishlistOpen, setWishlistOpen] = useState(false);
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [selected, setSelected] = useState("btnradio11");
-
-const [values, setValues] = useState([0, 400]);
->>>>>>> 4caa4617078b9d6d3e9d9b17b2dd37dd30393525
   const minLimit = 0;
   const maxLimit = 400;
 
@@ -308,138 +296,6 @@ const [values, setValues] = useState([0, 400]);
       </div>
     </div>
   </li>
-
-
-<<<<<<< HEAD
-        {/* Pages */}
-  <li className="relative group">
-    <a href="#" className="block py-2">
-      <span className="font-semibold">Pages</span>
-    </a>
-
-   <div className="fixed left-1/2 top-20 transform -translate-x-1/2 w-screen h-[60%] bg-white shadow-lg 
-   p-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all
-    duration-300 flex gap-10 z-50">   
-
-      <div className="max-w-[1920px] mx-auto grid grid-cols-6 gap-6">
-        
-        <div>
-          <h3 className="font-bold text-lg text-gray-900">Pages</h3>
-          <ul className="mt-2 space-y-1 text-gray-700 text-base">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">About Me</a></li>
-            <li><a href="#">Pricing Table</a></li>
-            <li><a href="#">Our Gift Vouchers</a></li>
-            <li><a href="#">What We Do</a></li>
-            <li><a href="#">Faqs 1</a></li>
-            <li><a href="#">Faqs 2</a></li>
-            <li><a href="#">Our Team</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-bold text-lg text-gray-900">Contact Us</h3>
-          <ul className="mt-2 space-y-1 text-gray-700 text-base">
-            <li><a href="#">Contact Us 1</a></li>
-            <li><a href="#">Contact Us 2</a></li>
-            <li><a href="#">Contact Us 3</a></li>
-          </ul>
-          
-          <h3 className="font-bold text-lg text-gray-900 mt-4">Web Pages</h3>
-          <ul className="mt-2 space-y-1 text-gray-700 text-base">
-            <li><a href="#">Error 404 1</a></li>
-            <li><a href="#">Error 404 2</a></li>
-            <li><a href="#">Coming Soon</a></li>
-            <li><a href="#">Under Construction</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-bold text-lg text-gray-900">Banner Style</h3>
-          <ul className="mt-2 space-y-1 text-gray-700 text-base">
-            <li><a href="#">Banner with BG Color</a></li>
-            <li><a href="#">Banner with Image</a></li>
-            <li><a href="#">Banner with Video</a></li>
-            <li><a href="#">Banner with Kanbern</a></li>
-            <li><a href="#">Banner Small</a></li>
-            <li><a href="#">Banner Medium</a></li>
-            <li><a href="#">Banner Large</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-bold text-lg text-gray-900">Header Style</h3>
-          <ul className="mt-2 space-y-1 text-gray-700 text-base">
-            <li><a href="#">Header Style 1</a></li>
-            <li><a href="#">Header Style 2</a></li>
-            <li><a href="#">Header Style 3</a></li>
-            <li><a href="#">Header Style 4</a></li>
-            <li><a href="#">Header Style 5</a></li>
-            <li><a href="#">Header Style 6</a></li>
-            <li><a href="#">Header Style 7</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-bold text-lg text-gray-900">Footer Style</h3>
-          <ul className="mt-2 space-y-1 text-gray-700 text-base">
-            <li><a href="#">Footer Style 1</a></li>
-            <li><a href="#">Footer Style 2</a></li>
-            <li><a href="#">Footer Style 3</a></li>
-            <li><a href="#">Footer Style 4</a></li>
-            <li><a href="#">Footer Style 5</a></li>
-            <li><a href="#">Footer Style 6</a></li>
-            <li><a href="#">Footer Style 7</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-bold text-lg text-gray-900">Dashboard</h3>
-          <ul className="mt-2 space-y-1 text-gray-700 text-base">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Orders</a></li>
-            <li><a href="#">Order Details</a></li>
-            <li><a href="#">Order Confirmation</a></li>
-            <li><a href="#">Downloads</a></li>
-            <li><a href="#">Return Request</a></li>
-            <li><a href="#">Return Request Detail</a></li>
-            <li><a href="#">Return Request Confirmed</a></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </li>
-=======
-                {/* My Account */}
-              <li className="relative group">
-                  <Link href="/account-profile" className="flex items-center">
-                    <span className="font-semibold">My Account</span>
-                  </Link>
-                   <div className="fixed left-1/2 top-18 transform -translate-x-1/2 ml-40
-                  w-[200px] bg-white shadow-lg p-1 hidden group-hover:flex gap-10 z-50">
-                   
-                    <ul className="p-3 space-y-2 text-gray-600">
-                      <li><a href="/account-dashboard" className="text-sm">Dashboard</a></li>
-                      <li><a href="/account-orders" className="text-sm">Orders</a></li>
-                      <li><a href="#" className="text-sm">Orders Details</a></li>
-                      <li><a href="#" className="text-sm">Orders Confirmation</a></li>
-                      <li><a href="#" className="text-sm">Downloads</a></li>
-                      <li><a href="#" className="text-sm">Return Request</a></li>
-                      <li><a href="#" className="text-sm">Return Request Detail</a></li>
-                      <li><a href="#" className="text-sm">Return Request Confirmed</a></li>
-                      <li><a href="#" className="text-sm">Profile</a></li>
-                      <li><a href="#" className="text-sm">Address</a></li>
-                      <li><a href="#" className="text-sm">Shipping methods</a></li>
-                      <li><a href="#" className="text-sm">Payment Methods</a></li>
-                      <li><a href="#" className="text-sm">Review</a></li>
-                      <li><a href="#" className="text-sm">Billing address</a></li>
-                      <li><a href="#" className="text-sm">Shipping address</a></li>
-                      <li><a href="#" className="text-sm">Cancellation Requests</a></li>
-                    </ul>
-                  </div>
-                </li>
->>>>>>> 4caa4617078b9d6d3e9d9b17b2dd37dd30393525
 
 
           {/* My Account */}

@@ -1,57 +1,35 @@
 {
   "name": "nextapp",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build": "next build",
     "start": "next start",
-    "build": "next build"
+    "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
     "@auth/core": "^0.39.1",
-    "next": "^13.5.11",
-    "next-auth": "^5.0.0-beta.28",
->>>>>>> 4caa4617078b9d6d3e9d9b17b2dd37dd30393525
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
-    "chart.js": "^4.4.9",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "lucide-react": "^0.303.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.14.1",
-<<<<<<< HEAD
     "next": "14.1.0",
     "next-auth": "^4.24.11",
-=======
->>>>>>> 4caa4617078b9d6d3e9d9b17b2dd37dd30393525
     "nodemon": "^3.0.2",
     "react": "^18.2.0",
-    "react-chartjs-2": "^5.3.0",
-    "react-dom": "^18.2.0",
-    "react-range": "^1.8.14",
-    "swiper": "^11.0.5"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
-<<<<<<< HEAD
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.1.0",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.3"
-=======
-    "@types/node": "22.15.18",
-    "@types/react": "19.1.4",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0",
-    "typescript": "5.8.3"
->>>>>>> 4caa4617078b9d6d3e9d9b17b2dd37dd30393525
   }
 }
