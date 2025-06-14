@@ -1,8 +1,14 @@
 // app/api/auth/[...nextauth]/route.ts
+<<<<<<< HEAD
 import NextAuth, { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
+=======
+<<<<<<< HEAD
+import NextAuth, { AuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+>>>>>>> b551bcdd3df87fc62fea482d7a7b09c3c30ebfc1
 import { findUserByEmail } from '@/app/database';
 import bcrypt from 'bcrypt';
 
@@ -10,6 +16,7 @@ if (!process.env.NEXTAUTH_SECRET) {
   throw new Error('NEXTAUTH_SECRET is not set in environment variables');
 }
 
+<<<<<<< HEAD
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   throw new Error('Google OAuth credentials are not set in environment variables');
 }
@@ -28,6 +35,10 @@ export const authOptions: AuthOptions = {
       clientId: process.env.FACEBOOK_CLIENT_ID,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     }),
+=======
+export const authOptions: AuthOptions = {
+  providers: [
+>>>>>>> b551bcdd3df87fc62fea482d7a7b09c3c30ebfc1
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -127,3 +138,11 @@ export const authOptions: AuthOptions = {
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
+<<<<<<< HEAD
+=======
+=======
+import { handlers } from '@/app/auth';
+
+export const { GET, POST } = handlers;
+>>>>>>> 4caa4617078b9d6d3e9d9b17b2dd37dd30393525
+>>>>>>> b551bcdd3df87fc62fea482d7a7b09c3c30ebfc1

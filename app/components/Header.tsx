@@ -1,10 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import { Range } from 'react-range';
 import Link from "next/link";
 
-const Header = ({ searchIcon, heartIcon, cartIcon }) => {
+type HeaderProps = {
+  searchIcon?: ReactNode;
+  heartIcon?: ReactNode;
+  cartIcon?: ReactNode;
+}
 
+<<<<<<< HEAD
 const [tab, setTab] = useState("");
   const [showWishlist, setShowWishlist] = useState(true);
   const [isSearchOpen, setSearchOpen] = useState(false);
@@ -14,44 +19,56 @@ const [tab, setTab] = useState("");
   const [selected, setSelected] = useState("btnradio11");
 
 const [values, setValues] = useState([0, 400]);
+=======
+const Header = ({ searchIcon, heartIcon, cartIcon }: HeaderProps) => {
+  const [tab, setTab] = useState<string>("");
+  const [showWishlist, setShowWishlist] = useState<boolean>(true);
+  const [isSearchOpen, setSearchOpen] = useState<boolean>(false);
+  const [isCartOpen, setCartOpen] = useState<boolean>(false);
+  const [isWishlistOpen, setWishlistOpen] = useState<boolean>(false);
+  const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  const [selected, setSelected] = useState<string>("btnradio11");
+  const [values, setValues] = useState<number[]>([0, 400]);
+  const [quantity, setQuantity] = useState<number>(1);
+
+>>>>>>> b551bcdd3df87fc62fea482d7a7b09c3c30ebfc1
   const minLimit = 0;
   const maxLimit = 400;
 
-
-const [quantity, setQuantity] = useState(1);
-
-  const handleChange = (e) => {
-    setQuantity(e.target.value); 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setQuantity(Number(e.target.value)); 
   };
 
- const closeAllModals = () => {
-  setSearchOpen(false);
-  setCartOpen(false);
-  setWishlistOpen(false);
-};
+  const handleRadioChange = (value: string): void => {
+    setSelected(value);
+  };
 
-useEffect(() => {
-  if (isSearchOpen || isCartOpen || isWishlistOpen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
-}, [isSearchOpen, isCartOpen, isWishlistOpen]);
+  const closeAllModals = (): void => {
+    setSearchOpen(false);
+    setCartOpen(false);
+    setWishlistOpen(false);
+  };
 
+  useEffect(() => {
+    if (isSearchOpen || isCartOpen || isWishlistOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isSearchOpen, isCartOpen, isWishlistOpen]);
 
   return (
-
- <header className="w-full bg-white border-b z-50">
-  <div>
-    <div>
-  <div className="mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-screen-xl flex items-center justify-between py-4">
-        
-        {/* Left: Logo (Hidden on Small Screens) */}
-        <div className="logo-header logo-dark pl-4 hidden md:block">
-          <Link href="/">
-            <img src="/assets/images/logo.svg" alt="Logo" />
-          </Link>
-        </div>
+    <header className="w-full bg-white border-b z-50">
+      <div>
+        <div>
+          <div className="mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-screen-xl flex items-center justify-between py-4">
+            
+            {/* Left: Logo (Hidden on Small Screens) */}
+            <div className="logo-header logo-dark pl-4 hidden md:block">
+              <Link href="/">
+                <img src="/assets/images/logo.svg" alt="Logo" />
+              </Link>
+            </div>
 
             <nav className="header-nav navbar-collapse ml-12 mt-1 hidden md:block">
               <ul className="nav navbar-nav flex items-center space-x-9">
@@ -90,306 +107,207 @@ useEffect(() => {
 
 
 
-          {/* Become A Vendor */}
-<li className="has-mega-menu sub-menu-down relative group">
-  <Link href="/become-a-vendor" className="flex items-center gap-1">
-    <span className="font-semibold">Become a Vendor</span>
-  </Link>
+        {/* Become A Vendor */}
+  <li className="has-mega-menu sub-menu-down relative group">
+    <Link href="/become-a-vendor" className="flex items-center gap-1">
+      <span className="font-semibold">Become a Vendor</span>
+    </Link>
 
- <div className="mega-menu shop-menu fixed left-1/2 top-20 transform -translate-x-1/2 w-[1100px] 
-  bg-white shadow-lg p-8 flex opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all
-  duration-300 gap-10 z-50">
-    
-    <div className="w-2/3">
-      <div className="grid grid-cols-3 gap-10">
-        
-        <div>
-          <a href="#" className="menu-title font-bold text-gray-900 block mb-3 text-lg">Shop Structure</a>
-           <ul className="space-y-2 text-sm text-gray-700">
-            <li><a href="#" className="hover:text-primary">Shop Standard</a></li>
-            <li><a href="#" className="hover:text-primary">Shop List</a></li>
-            <li><a href="#" className="hover:text-primary">Shop With Category</a></li>
-            <li><a href="#" className="hover:text-primary">Shop Filters Top Bar</a></li>
-            <li><a href="#" className="hover:text-primary">Shop Sidebar</a></li>
-            <li><a href="#" className="hover:text-primary">Shop Style 1</a></li>
-            <li><a href="#" className="hover:text-primary">Shop Style 2</a></li>
-          </ul>
+   <div className="mega-menu shop-menu fixed left-1/2 top-20 transform -translate-x-1/2 w-[1100px] 
+    bg-white shadow-lg p-8 flex opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all
+    duration-300 gap-10 z-50">
+      
+      <div className="w-2/3">
+        <div className="grid grid-cols-3 gap-10">
+          
+          <div>
+            <a href="#" className="menu-title font-bold text-gray-900 block mb-3 text-lg">Shop Structure</a>
+             <ul className="space-y-2 text-sm text-gray-700">
+              <li><a href="#" className="hover:text-primary">Shop Standard</a></li>
+              <li><a href="#" className="hover:text-primary">Shop List</a></li>
+              <li><a href="#" className="hover:text-primary">Shop With Category</a></li>
+              <li><a href="#" className="hover:text-primary">Shop Filters Top Bar</a></li>
+              <li><a href="#" className="hover:text-primary">Shop Sidebar</a></li>
+              <li><a href="#" className="hover:text-primary">Shop Style 1</a></li>
+              <li><a href="#" className="hover:text-primary">Shop Style 2</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <a href="#" className="menu-title font-bold text-gray-900 block mb-3 text-lg">Product Structure</a>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li><a href="#" className="hover:text-primary">Default</a></li>
+              <li><a href="#" className="hover:text-primary">Thumbnail</a></li>
+              <li><a href="#" className="hover:text-primary">Grid Media</a></li>
+              <li><a href="#" className="hover:text-primary">Carousel</a></li>
+              <li><a href="#" className="hover:text-primary">Full Width</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <a href="#" className="menu-title font-bold text-gray-900 block mb-3 text-lg">Shop Pages</a>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li><a href="#" className="hover:text-primary">Wishlist</a></li>
+              <li><a href="#" className="hover:text-primary">Cart</a></li>
+              <li><a href="#" className="hover:text-primary">Checkout</a></li>
+              <li><a href="#" className="hover:text-primary">Compare</a></li>
+              <li><a href="#" className="hover:text-primary">Order Tracking</a></li>
+              <li><a href="#" className="hover:text-primary">My Account</a></li>
+              <li><a href="#" className="hover:text-primary">Registration</a></li>
+            </ul>
+          </div>
         </div>
 
-        <div>
-          <a href="#" className="menu-title font-bold text-gray-900 block mb-3 text-lg">Product Structure</a>
-          <ul className="space-y-2 text-sm text-gray-700">
-            <li><a href="#" className="hover:text-primary">Default</a></li>
-            <li><a href="#" className="hover:text-primary">Thumbnail</a></li>
-            <li><a href="#" className="hover:text-primary">Grid Media</a></li>
-            <li><a href="#" className="hover:text-primary">Carousel</a></li>
-            <li><a href="#" className="hover:text-primary">Full Width</a></li>
-          </ul>
+     {/* Deal of the Month */}
+   <div className="mt-8 border border-gray-300 p-6 rounded-md flex justify-between items-center bg-white 
+    shadow-md">
+          
+    <div>
+      <h3 className="text-xl font-semibold mb-2">Deal of the Month</h3>
+      <p className="text-sm text-gray-800 font-semibold leading-normal">
+        Yes! Send me exclusive offers, personalized gifts <br /> ideas, and shopping tips. <br /> 
+      </p>
+     <a href="#" className="text-sm text-gray-500 font-semibold mt-3">View All Products</a>
+    </div>
+
+    <div className="flex gap-2 text-center ml-2">
+
+      <div className="flex flex-col items-center">
+        <div className="px-4 py-2 rounded-md bg-gray-100">
+          <span className="text-xl font-semibold">28</span>
         </div>
-
-        <div>
-          <a href="#" className="menu-title font-bold text-gray-900 block mb-3 text-lg">Shop Pages</a>
-          <ul className="space-y-2 text-sm text-gray-700">
-            <li><a href="#" className="hover:text-primary">Wishlist</a></li>
-            <li><a href="#" className="hover:text-primary">Cart</a></li>
-            <li><a href="#" className="hover:text-primary">Checkout</a></li>
-            <li><a href="#" className="hover:text-primary">Compare</a></li>
-            <li><a href="#" className="hover:text-primary">Order Tracking</a></li>
-            <li><a href="#" className="hover:text-primary">My Account</a></li>
-            <li><a href="#" className="hover:text-primary">Registration</a></li>
-          </ul>
+        <span className="text-xs uppercase mt-1">Days</span>
+      </div>
+      
+      <div className="flex flex-col items-center">
+        <div className="px-4 py-2 rounded-md bg-gray-100">
+          <span className="text-xl font-semibold">12</span>
         </div>
+        <span className="text-xs uppercase mt-1">Hours</span>
       </div>
-
-   {/* Deal of the Month */}
- <div className="mt-8 border border-gray-300 p-6 rounded-md flex justify-between items-center bg-white 
- shadow-md">
-        
-  <div>
-    <h3 className="text-xl font-semibold mb-2">Deal of the Month</h3>
-    <p className="text-sm text-gray-800 font-semibold leading-normal">
-      Yes! Send me exclusive offers, personalized gifts <br /> ideas, and shopping tips. <br /> 
-    </p>
-   <a href="#" className="text-sm text-gray-500 font-semibold mt-3">View All Products</a>
-  </div>
-
-  <div className="flex gap-2 text-center ml-2">
-
-    <div className="flex flex-col items-center">
-      <div className="px-4 py-2 rounded-md bg-gray-100">
-        <span className="text-xl font-semibold">28</span>
+      
+      <div className="flex flex-col items-center">
+        <div className="px-4 py-2 rounded-md bg-gray-100">
+          <span className="text-xl font-semibold">06</span>
+        </div>
+        <span className="text-xs uppercase mt-1">Minutes</span>
       </div>
-      <span className="text-xs uppercase mt-1">Days</span>
-    </div>
-    
-    <div className="flex flex-col items-center">
-      <div className="px-4 py-2 rounded-md bg-gray-100">
-        <span className="text-xl font-semibold">12</span>
+      
+      <div className="flex flex-col items-center">
+        <div className="px-4 py-2 rounded-md bg-gray-100">
+          <span className="text-xl font-semibold">43</span>
+        </div>
+        <span className="text-xs uppercase mt-1">Seconds</span>
       </div>
-      <span className="text-xs uppercase mt-1">Hours</span>
-    </div>
-    
-    <div className="flex flex-col items-center">
-      <div className="px-4 py-2 rounded-md bg-gray-100">
-        <span className="text-xl font-semibold">06</span>
-      </div>
-      <span className="text-xs uppercase mt-1">Minutes</span>
-    </div>
-    
-    <div className="flex flex-col items-center">
-      <div className="px-4 py-2 rounded-md bg-gray-100">
-        <span className="text-xl font-semibold">43</span>
-      </div>
-      <span className="text-xs uppercase mt-1">Seconds</span>
-    </div>
-  </div>
-
-</div>
-    </div>
-
-    <div className="w-1/3">
-      <img src="assets/images/adv-1.png" alt="Promo Image" className="w-full h-auto object-cover rounded-md shadow-md" />
     </div>
 
   </div>
-</li>
+      </div>
 
+      <div className="w-1/3">
+        <img src="assets/images/adv-1.png" alt="Promo Image" className="w-full h-auto object-cover rounded-md shadow-md" />
+      </div>
 
-                {/* Vendor */}
-   <li className="relative group">
-  <Link href="/vendor" className="block  py-2">
-    <span className="font-semibold">Vendor</span>
-  </Link>
-
-  <div className="fixed left-1/2 top-20 transform -translate-x-1/2 w-[1100px] bg-white shadow-lg p-8 grid grid-cols-4 gap-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 rounded-lg z-50">
-    
-    <div>
-      <a href="#" className="font-bold text-lg text-gray-900">Blog Dark Style</a>
-      <ul className="mt-2 space-y-1 text-gray-700">
-        <li><a href="#">Blog 2 Column</a></li>
-        <li><a href="#">Blog 2 Column Sidebar</a></li>
-        <li><a href="#">Blog 3 Column</a></li>
-        <li><a href="#">Blog Half Image</a></li>
-      </ul>
-
-      <a href="#" className="font-bold text-lg text-gray-900 mt-5 block">Blog Light Style</a>
-      <ul className="mt-2 space-y-1 text-gray-700">
-        <li><a href="#">Blog 2 Column</a></li>
-        <li><a href="#">Blog 2 Column Sidebar</a></li>
-        <li><a href="#">Blog Half Image</a></li>
-        <li><a href="#">Blog Exclusive</a></li>
-      </ul>
     </div>
-
-    <div>
-      <a href="#" className="font-bold text-lg text-gray-900">Blog Sidebar</a>
-      <ul className="mt-2 space-y-1 text-gray-700">
-        <li><a href="#">Blog Left Sidebar</a></li>
-        <li><a href="#">Blog Right Sidebar</a></li>
-        <li><a href="#">Blog Both Sidebar</a></li>
-        <li><a href="#">Blog Wide Sidebar</a></li>
-      </ul>
-
-      <a href="#" className="font-bold text-lg text-gray-900 mt-5 block">Blog Page</a>
-      <ul className="mt-2 space-y-1 text-gray-700">
-        <li><a href="#">Blog Archive</a></li>
-        <li><a href="#">Author</a></li>
-        <li><a href="#">Blog Category</a></li>
-        <li><a href="#">Blog Tag</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <a href="#" className="font-bold text-lg text-gray-900">Blog Details</a>
-      <ul className="mt-2 space-y-1 text-gray-700">
-        <li><a href="#">Post Standard</a></li>
-        <li><a href="#">Post Left Sidebar</a></li>
-        <li><a href="#">Post Header Image</a></li>
-        <li><a href="#">Post Slide Show</a></li>
-        <li><a href="#">Post Side Image</a></li>
-        <li><a href="#">Post Gallery</a></li>
-        <li><a href="#">Post Gallery Alternative</a></li>
-        <li><a href="#">Post Open Gutenberg</a></li>
-        <li><a href="#">Post Link</a></li>
-        <li><a href="#">Post Audio</a></li>
-        <li><a href="#">Post Video</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <a href="#" className="font-bold text-lg text-gray-900">Recent Posts</a>
-      <ul className="mt-2 space-y-3 text-gray-700">
-        <li className="flex items-center">
-          <img src="assets/images/shop/product/small/1.png" className="w-12 h-12 rounded-lg mr-3" alt="" />
-          <div>
-            <a href="#" className="font-medium text-gray-900">Cozy Knit Cardigan Sweater</a>
-            <span className="block text-sm text-gray-500">July 23, 2024</span>
-          </div>
-        </li>
-        <li className="flex items-center">
-          <img src="assets/images/shop/product/small/2.png" className="w-12 h-12 rounded-lg mr-3" alt="" />
-          <div>
-            <a href="#" className="font-medium text-gray-900">Sophisticated Swagger Suit</a>
-            <span className="block text-sm text-gray-500">July 23, 2024</span>
-          </div>
-        </li>
-        <li className="flex items-center">
-          <img src="assets/images/shop/product/small/3.png" className="w-12 h-12 rounded-lg mr-3" alt="" />
-          <div>
-            <a href="#" className="font-medium text-gray-900">Athletic Mesh Sports Leggings</a>
-            <span className="block text-sm text-gray-500">July 23, 2024</span>
-          </div>
-        </li>
-        <li className="flex items-center">
-          <img src="assets/images/shop/product/small/4.png" className="w-12 h-12 rounded-lg mr-3" alt="" />
-          <div>
-            <a href="#" className="font-medium text-gray-900">Satin Wrap Party Blouse</a>
-            <span className="block text-sm text-gray-500">July 23, 2024</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</li>
+  </li>
 
 
-      {/* Pages */}
-<li className="relative group">
-  <a href="#" className="block py-2">
-    <span className="font-semibold">Pages</span>
-  </a>
+          {/* Vendor */}
+     <li className="relative group">
+    <Link href="/vendor" className="block  py-2">
+      <span className="font-semibold">Vendor</span>
+    </Link>
 
- <div className="fixed left-1/2 top-20 transform -translate-x-1/2 w-screen h-[60%] bg-white shadow-lg 
- p-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all
-  duration-300 flex gap-10 z-50">   
-
-    <div className="max-w-[1920px] mx-auto grid grid-cols-6 gap-6">
+    <div className="fixed left-1/2 top-20 transform -translate-x-1/2 w-[1100px] bg-white shadow-lg p-8 grid grid-cols-4 gap-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 rounded-lg z-50">
       
       <div>
-        <h3 className="font-bold text-lg text-gray-900">Pages</h3>
-        <ul className="mt-2 space-y-1 text-gray-700 text-base">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">About Me</a></li>
-          <li><a href="#">Pricing Table</a></li>
-          <li><a href="#">Our Gift Vouchers</a></li>
-          <li><a href="#">What We Do</a></li>
-          <li><a href="#">Faqs 1</a></li>
-          <li><a href="#">Faqs 2</a></li>
-          <li><a href="#">Our Team</a></li>
+        <a href="#" className="font-bold text-lg text-gray-900">Blog Dark Style</a>
+        <ul className="mt-2 space-y-1 text-gray-700">
+          <li><a href="#">Blog 2 Column</a></li>
+          <li><a href="#">Blog 2 Column Sidebar</a></li>
+          <li><a href="#">Blog 3 Column</a></li>
+          <li><a href="#">Blog Half Image</a></li>
+        </ul>
+
+        <a href="#" className="font-bold text-lg text-gray-900 mt-5 block">Blog Light Style</a>
+        <ul className="mt-2 space-y-1 text-gray-700">
+          <li><a href="#">Blog 2 Column</a></li>
+          <li><a href="#">Blog 2 Column Sidebar</a></li>
+          <li><a href="#">Blog Half Image</a></li>
+          <li><a href="#">Blog Exclusive</a></li>
         </ul>
       </div>
 
       <div>
-        <h3 className="font-bold text-lg text-gray-900">Contact Us</h3>
-        <ul className="mt-2 space-y-1 text-gray-700 text-base">
-          <li><a href="#">Contact Us 1</a></li>
-          <li><a href="#">Contact Us 2</a></li>
-          <li><a href="#">Contact Us 3</a></li>
+        <a href="#" className="font-bold text-lg text-gray-900">Blog Sidebar</a>
+        <ul className="mt-2 space-y-1 text-gray-700">
+          <li><a href="#">Blog Left Sidebar</a></li>
+          <li><a href="#">Blog Right Sidebar</a></li>
+          <li><a href="#">Blog Both Sidebar</a></li>
+          <li><a href="#">Blog Wide Sidebar</a></li>
         </ul>
-        
-        <h3 className="font-bold text-lg text-gray-900 mt-4">Web Pages</h3>
-        <ul className="mt-2 space-y-1 text-gray-700 text-base">
-          <li><a href="#">Error 404 1</a></li>
-          <li><a href="#">Error 404 2</a></li>
-          <li><a href="#">Coming Soon</a></li>
-          <li><a href="#">Under Construction</a></li>
+
+        <a href="#" className="font-bold text-lg text-gray-900 mt-5 block">Blog Page</a>
+        <ul className="mt-2 space-y-1 text-gray-700">
+          <li><a href="#">Blog Archive</a></li>
+          <li><a href="#">Author</a></li>
+          <li><a href="#">Blog Category</a></li>
+          <li><a href="#">Blog Tag</a></li>
         </ul>
       </div>
 
       <div>
-        <h3 className="font-bold text-lg text-gray-900">Banner Style</h3>
-        <ul className="mt-2 space-y-1 text-gray-700 text-base">
-          <li><a href="#">Banner with BG Color</a></li>
-          <li><a href="#">Banner with Image</a></li>
-          <li><a href="#">Banner with Video</a></li>
-          <li><a href="#">Banner with Kanbern</a></li>
-          <li><a href="#">Banner Small</a></li>
-          <li><a href="#">Banner Medium</a></li>
-          <li><a href="#">Banner Large</a></li>
+        <a href="#" className="font-bold text-lg text-gray-900">Blog Details</a>
+        <ul className="mt-2 space-y-1 text-gray-700">
+          <li><a href="#">Post Standard</a></li>
+          <li><a href="#">Post Left Sidebar</a></li>
+          <li><a href="#">Post Header Image</a></li>
+          <li><a href="#">Post Slide Show</a></li>
+          <li><a href="#">Post Side Image</a></li>
+          <li><a href="#">Post Gallery</a></li>
+          <li><a href="#">Post Gallery Alternative</a></li>
+          <li><a href="#">Post Open Gutenberg</a></li>
+          <li><a href="#">Post Link</a></li>
+          <li><a href="#">Post Audio</a></li>
+          <li><a href="#">Post Video</a></li>
         </ul>
       </div>
 
       <div>
-        <h3 className="font-bold text-lg text-gray-900">Header Style</h3>
-        <ul className="mt-2 space-y-1 text-gray-700 text-base">
-          <li><a href="#">Header Style 1</a></li>
-          <li><a href="#">Header Style 2</a></li>
-          <li><a href="#">Header Style 3</a></li>
-          <li><a href="#">Header Style 4</a></li>
-          <li><a href="#">Header Style 5</a></li>
-          <li><a href="#">Header Style 6</a></li>
-          <li><a href="#">Header Style 7</a></li>
+        <a href="#" className="font-bold text-lg text-gray-900">Recent Posts</a>
+        <ul className="mt-2 space-y-3 text-gray-700">
+          <li className="flex items-center">
+            <img src="assets/images/shop/product/small/1.png" className="w-12 h-12 rounded-lg mr-3" alt="" />
+            <div>
+              <a href="#" className="font-medium text-gray-900">Cozy Knit Cardigan Sweater</a>
+              <span className="block text-sm text-gray-500">July 23, 2024</span>
+            </div>
+          </li>
+          <li className="flex items-center">
+            <img src="assets/images/shop/product/small/2.png" className="w-12 h-12 rounded-lg mr-3" alt="" />
+            <div>
+              <a href="#" className="font-medium text-gray-900">Sophisticated Swagger Suit</a>
+              <span className="block text-sm text-gray-500">July 23, 2024</span>
+            </div>
+          </li>
+          <li className="flex items-center">
+            <img src="assets/images/shop/product/small/3.png" className="w-12 h-12 rounded-lg mr-3" alt="" />
+            <div>
+              <a href="#" className="font-medium text-gray-900">Athletic Mesh Sports Leggings</a>
+              <span className="block text-sm text-gray-500">July 23, 2024</span>
+            </div>
+          </li>
+          <li className="flex items-center">
+            <img src="assets/images/shop/product/small/4.png" className="w-12 h-12 rounded-lg mr-3" alt="" />
+            <div>
+              <a href="#" className="font-medium text-gray-900">Satin Wrap Party Blouse</a>
+              <span className="block text-sm text-gray-500">July 23, 2024</span>
+            </div>
+          </li>
         </ul>
       </div>
-
-      <div>
-        <h3 className="font-bold text-lg text-gray-900">Footer Style</h3>
-        <ul className="mt-2 space-y-1 text-gray-700 text-base">
-          <li><a href="#">Footer Style 1</a></li>
-          <li><a href="#">Footer Style 2</a></li>
-          <li><a href="#">Footer Style 3</a></li>
-          <li><a href="#">Footer Style 4</a></li>
-          <li><a href="#">Footer Style 5</a></li>
-          <li><a href="#">Footer Style 6</a></li>
-          <li><a href="#">Footer Style 7</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="font-bold text-lg text-gray-900">Dashboard</h3>
-        <ul className="mt-2 space-y-1 text-gray-700 text-base">
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Orders</a></li>
-          <li><a href="#">Order Details</a></li>
-          <li><a href="#">Order Confirmation</a></li>
-          <li><a href="#">Downloads</a></li>
-          <li><a href="#">Return Request</a></li>
-          <li><a href="#">Return Request Detail</a></li>
-          <li><a href="#">Return Request Confirmed</a></li>
-        </ul>
-      </div>
-
     </div>
+<<<<<<< HEAD
   </div>
 </li>
 
@@ -422,21 +340,54 @@ useEffect(() => {
                     </ul>
                   </div>
                 </li>
+=======
+  </li>
+>>>>>>> b551bcdd3df87fc62fea482d7a7b09c3c30ebfc1
 
 
+          {/* My Account */}
+        <li className="relative group">
+            <Link href="/account-profile" className="flex items-center">
+              <span className="font-semibold">My Account</span>
+            </Link>
+             <div className="fixed left-1/2 top-18 transform -translate-x-1/2 ml-40
+            w-[200px] bg-white shadow-lg p-1 hidden group-hover:flex gap-10 z-50">
+             
+              <ul className="p-3 space-y-2 text-gray-600">
+                <li><a href="/account-dashboard" className="text-sm">Dashboard</a></li>
+                <li><a href="/account-orders" className="text-sm">Orders</a></li>
+                <li><a href="#" className="text-sm">Orders Details</a></li>
+                <li><a href="#" className="text-sm">Orders Confirmation</a></li>
+                <li><a href="#" className="text-sm">Downloads</a></li>
+                <li><a href="#" className="text-sm">Return Request</a></li>
+                <li><a href="#" className="text-sm">Return Request Detail</a></li>
+                <li><a href="#" className="text-sm">Return Request Confirmed</a></li>
+                <li><a href="#" className="text-sm">Profile</a></li>
+                <li><a href="#" className="text-sm">Address</a></li>
+                <li><a href="#" className="text-sm">Shipping methods</a></li>
+                <li><a href="#" className="text-sm">Payment Methods</a></li>
+                <li><a href="#" className="text-sm">Review</a></li>
+                <li><a href="#" className="text-sm">Billing address</a></li>
+                <li><a href="#" className="text-sm">Shipping address</a></li>
+                <li><a href="#" className="text-sm">Cancellation Requests</a></li>
               </ul>
-            </nav>
+            </div>
+          </li>
+
+
+          </ul>
+        </nav>
 
 
 <div className="md:ml-12 ml-0">
-          <div className="nav-link border-b flex items-center space-x-2">
-            <Link href="/login">Login</Link>
-            <span>/</span>
-            <Link href="/register">Register</Link>
-      </div>
+        <div className="nav-link border-b flex items-center space-x-2">
+          <Link href="/login">Login</Link>
+          <span>/</span>
+          <Link href="/register">Register</Link>
     </div>
+  </div>
 
-     {/* Right-side Icons */}
+   {/* Right-side Icons */}
 <div className="flex items-center justify-end w-full md:w-auto max-w-full overflow-x-auto">
   <ul className="flex items-center space-x-2 md:space-x-4 list-none flex-nowrap">
 
@@ -674,7 +625,7 @@ useEffect(() => {
               <div className="mb-[25px] max-lg:mb-10 mr-4">
                 <div>
                   <div className="relative flex flex-wrap items-stretch pl-0 w-[110%] mt-16 border-black p-2">
-                 <input name="Search" required="required" type="search" className="py-2.5 px-4 text-2sm 
+                 <input name="Search" required={true} type="search" className="py-2.5 px-4 text-2sm 
                  placeholder-black text-title outline-none flex-auto w-[1%] rounded-xl border border-black"
                       placeholder="Search Product" />
                   <div className="absolute top-1/2 -translate-y-1/2 left-[87%] z-9">
@@ -802,7 +753,15 @@ useEffect(() => {
       <h6 className="relative mb-6.1 font-medium">Size</h6>
       <div className="flex flex-wrap relative product-size mt-3 space-y-2">
 
-      <input  type="radio"  className="opacity-0 absolute pointer-events-none btn-check" name="btnradio1" id="btnradio11"  checked={selected === "btnradio11"} onChange={() => setSelected("btnradio11")}  />
+      <input
+        type="radio"
+        name="btnradio"
+        id="btnradio11"
+        autoComplete="off"
+        checked={selected === "btnradio11"}
+        onChange={() => handleRadioChange("btnradio11")}
+        className="opacity-0 absolute pointer-events-none btn-check"
+      />
                   <label htmlFor="btnradio11"
                     className="size-[34px] leading-[34px] rounded-full text-center border border-black mr-2.5 mb-1.1"
                     >4</label>

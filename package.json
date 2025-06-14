@@ -1,14 +1,15 @@
 {
   "name": "nextapp",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build": "next build",
     "start": "next start",
-    "build": "next build"
+    "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.4.9",
@@ -34,5 +35,29 @@
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0",
     "typescript": "5.8.3"
+=======
+    "@auth/core": "^0.39.1",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.14.1",
+    "next": "14.1.0",
+    "next-auth": "^4.24.11",
+    "nodemon": "^3.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.1.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3"
+>>>>>>> b551bcdd3df87fc62fea482d7a7b09c3c30ebfc1
   }
 }
