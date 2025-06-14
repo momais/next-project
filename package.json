@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "@auth/core": "^0.39.1",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.4.9",
@@ -19,7 +19,7 @@
     "lucide-react": "^0.303.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.14.1",
-    "next": "^15.3.2",
+    "next": "14.1.0",
     "next-auth": "^4.24.11",
     "nodemon": "^3.0.2",
     "react": "^18.2.0",
@@ -27,25 +27,6 @@
     "react-dom": "^18.2.0",
     "react-range": "^1.8.14",
     "swiper": "^11.0.5"
-  },
-  "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
-    "@types/node": "22.15.18",
-    "@types/react": "19.1.4",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0",
-    "typescript": "5.8.3"
-=======
-    "@auth/core": "^0.39.1",
-    "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
-    "mysql": "^2.18.1",
-    "mysql2": "^3.14.1",
-    "next": "14.1.0",
-    "next-auth": "^4.24.11",
-    "nodemon": "^3.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -58,6 +39,5 @@
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.3"
->>>>>>> b551bcdd3df87fc62fea482d7a7b09c3c30ebfc1
   }
 }
