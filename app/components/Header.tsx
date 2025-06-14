@@ -8,7 +8,6 @@ const Header = ({ searchIcon, heartIcon, cartIcon }) => {
 const [tab, setTab] = useState("");
   const [showWishlist, setShowWishlist] = useState(true);
   const [isSearchOpen, setSearchOpen] = useState(false);
-
   const [isCartOpen, setCartOpen] = useState(false);
   const [isWishlistOpen, setWishlistOpen] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -397,7 +396,7 @@ useEffect(() => {
 
                 {/* My Account */}
               <li className="relative group">
-                  <Link href="/account-dashboard" className="flex items-center">
+                  <Link href="/account-profile" className="flex items-center">
                     <span className="font-semibold">My Account</span>
                   </Link>
                    <div className="fixed left-1/2 top-18 transform -translate-x-1/2 ml-40
@@ -405,7 +404,7 @@ useEffect(() => {
                    
                     <ul className="p-3 space-y-2 text-gray-600">
                       <li><a href="/account-dashboard" className="text-sm">Dashboard</a></li>
-                      <li><a href="#" className="text-sm">Orders</a></li>
+                      <li><a href="/account-orders" className="text-sm">Orders</a></li>
                       <li><a href="#" className="text-sm">Orders Details</a></li>
                       <li><a href="#" className="text-sm">Orders Confirmation</a></li>
                       <li><a href="#" className="text-sm">Downloads</a></li>
