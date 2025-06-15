@@ -3,7 +3,16 @@ import { useState } from "react";
 import Link from "next/link";
 import { ChevronRight, ChevronDown } from "lucide-react"; 
 
-const Header1 = ({ MenuIcon, CloseIcon, ChevronRightIcon, ChevronDownIcon }) => {
+type DropdownKey = 'home' | 'shop' | 'blog' | 'portfolio' | 'pages' | 'account';
+
+type Header1Props = {
+  MenuIcon: React.ReactNode;
+  CloseIcon: React.ReactNode;
+  ChevronRightIcon: React.ReactNode;
+  ChevronDownIcon: React.ReactNode;
+};
+
+const Header1 = ({ MenuIcon, CloseIcon, ChevronRightIcon, ChevronDownIcon }: Header1Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState({
     home: false,
@@ -14,13 +23,13 @@ const Header1 = ({ MenuIcon, CloseIcon, ChevronRightIcon, ChevronDownIcon }) => 
     account: false,
   });
 
-  const toggleDropdown = (menu) => {
+  const toggleDropdown = (menu: DropdownKey) => {
     setDropdownOpen((prev) => {
       const newDropdownState = { ...prev, [menu]: !prev[menu] };
       
       for (let key in newDropdownState) {
         if (key !== menu) {
-          newDropdownState[key] = false;
+          newDropdownState[key as DropdownKey] = false;
         }
       }
       

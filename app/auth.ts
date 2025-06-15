@@ -1,12 +1,12 @@
-import NextAuth from 'next-auth';
-import type { NextAuthConfig } from 'next-auth';
+import NextAuth, { type NextAuthOptions, type User, type Session, type Account } from 'next-auth';
+import type { JWT } from 'next-auth/jwt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 import { findUserByEmail } from '@/app/database';
 import bcrypt from 'bcrypt';
 
-export const authConfig = {
+export const authConfig: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || '',
@@ -87,33 +87,32 @@ export const authConfig = {
     maxAge: 30 * 24 * 60 * 60,
   },
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account }: { token: JWT, user?: User, account?: Account | null }) {
       if (user) {
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
-        token.usertype = user.usertype;
+        token.usertype = (user as any).usertype;
       }
       if (account) {
         token.provider = account.provider;
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session, token: JWT }) {
       if (token) {
         session.user = {
           id: token.id as string,
           name: token.name as string,
           email: token.email as string,
-          usertype: token.usertype as number,
-          emailVerified: null
+          usertype: token.usertype as number
         };
       }
       return session;
     }
   },
   events: {
-    async signIn({ user, account }) {
+    async signIn({ user, account }: { user: User, account?: Account | null }) {
       console.log('User signed in:', user.email, 'via', account?.provider);
     },
     async signOut() {
@@ -122,6 +121,6 @@ export const authConfig = {
   },
   debug: process.env.NODE_ENV === 'development',
   secret: process.env.NEXTAUTH_SECRET
-} satisfies NextAuthConfig;
+};
 
-export const { auth, signIn, signOut, handlers } = NextAuth(authConfig); 
+export default NextAuth(authConfig); 
