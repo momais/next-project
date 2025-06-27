@@ -183,7 +183,7 @@ const Home: React.FC = () => {
                   height={250}
                   className="w-[300px] h-[250px] max-md:w-[180px] max-md:h-[150px] object-cover border-4 border-white rounded-3xl rounded-ee-[60px] max-md:rounded-ee-[30px] transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute top-44 -left-6 bg-white px-4 py-1 rounded-full text-md font-semibold shadow-md">
+               <div className="absolute top-[75%] -left-6 bg-white px-4 py-1 rounded-full text-md font-semibold shadow-md">
                   Jacket
                 </div>
               </Link>
@@ -199,7 +199,7 @@ const Home: React.FC = () => {
                   height={250}
                   className="w-[220px] h-[250px] max-md:w-[180px] max-md:h-[150px] object-cover border-4 border-white rounded-3xl rounded-es-[60px] max-md:rounded-es-[30px] transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute top-44 -left-6 bg-white px-4 py-1 rounded-full text-md font-semibold shadow-md">
+              <div className="absolute top-[75%] -left-6 bg-white px-4 py-1 font-semibold rounded-full text-md shadow-md">
                   Jeans
                 </div>
               </Link>
@@ -215,7 +215,7 @@ const Home: React.FC = () => {
                   height={250}
                   className="w-[300px] h-[250px] max-md:w-[180px] max-md:h-[150px] object-cover border-4 border-white rounded-3xl rounded-ee-[60px] max-md:rounded-ee-[30px] transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute top-44 -left-6 bg-white px-4 py-1 rounded-full text-md font-semibold shadow-md">
+              <div className="absolute top-[75%] -left-6 bg-white px-4 py-1 font-semibold rounded-full text-md shadow-md">
                   Shirts
                 </div>
               </Link>
@@ -231,9 +231,12 @@ const Home: React.FC = () => {
                   height={250}
                   className="w-[280px] h-[250px] max-md:w-[180px] max-md:h-[150px] object-cover border-4 border-white rounded-3xl rounded-ss-[60px] max-md:rounded-ss-[30px] transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute top-44 -left-6 bg-white px-4 py-1 rounded-full text-md font-semibold shadow-md">
-                  Shorts
-                </div>
+        <div className="lg:hidden absolute top-[75%] -left-6 bg-white px-4 py-1 font-semibold rounded-full text-md shadow-md">
+            Shorts
+          </div>
+          <div className="hidden md:block absolute top-[75%] right-8 font-semibold bg-white px-4 py-1 rounded-full text-md shadow-md">
+            Shorts
+          </div>
               </Link>
             </div>
 
@@ -247,28 +250,33 @@ const Home: React.FC = () => {
                   height={250}
                   className="w-[300px] h-[250px] max-md:w-[180px] max-md:h-[150px] object-cover border-4 border-white rounded-3xl rounded-ss-[60px] max-md:rounded-ss-[30px] transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute top-44 -left-6 bg-white px-4 py-1 rounded-full text-md font-semibold shadow-md">
-                  T-Shirt
-                </div>
+          <div className="lg:hidden absolute top-[75%] -left-6 bg-white px-4 py-1 font-semibold rounded-full text-md shadow-md">
+            T-Shirt
+          </div>
+          <div className="hidden md:block absolute bottom-5 right-8 bg-white font-semibold px-4 py-1 rounded-full text-md shadow-md">
+            T-Shirt
+          </div>
               </Link>
             </div>
+
             <div className="col-span-4 max-lg:col-span-1 max-md:col-span-1 relative top-[15%] ml-[17%]">
-              <Link href="#" className="relative">
+              <Link href="#" className="relative block group">
                 <Image 
                   src="/assets/images/category/pic6.jpg" 
                   alt="Coat"
                   width={210}
                   height={250}
-                  className="w-[300px] h-[250px] max-md:w-[180px] max-md:h-[150px] object-cover border-4 border-white rounded-3xl rounded-ss-[60px] max-md:rounded-ss-[30px] transition-transform duration-300 group-hover:scale-105"
+                  className="w-[220px] h-[250px] max-md:w-[180px] max-md:h-[150px] object-cover border-4 border-white rounded-3xl rounded-ss-[60px] max-md:rounded-ss-[30px] transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="lg:hidden absolute top-[75%] -left-6 bg-white px-4 py-1 font-semibold rounded-full text-md shadow-md">
-                  Coat
-                </div>
-                <div className="hidden md:block absolute top-44 -left-6 bg-white px-4 py-1 font-semibold rounded-full text-md shadow-md">
-               Coat
-              </div>
+          <div className="lg:hidden absolute top-[75%] -left-6 bg-white px-4 py-1 font-semibold rounded-full text-md shadow-md">
+            Coat
+          </div>
+          <div className="hidden md:block absolute bottom-5 right-[20%] font-semibold bg-white px-4 py-1 rounded-full text-md shadow-md">
+            Coat
+          </div>
               </Link>
             </div>
+
           </div>
         </div>
       </div>

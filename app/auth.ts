@@ -87,7 +87,7 @@ export const authConfig: NextAuthOptions = {
     maxAge: 30 * 24 * 60 * 60,
   },
   callbacks: {
-    async jwt({ token, user, account }: { token: JWT, user?: User, account?: Account | null }) {
+    async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id;
         token.name = user.name;
@@ -99,14 +99,12 @@ export const authConfig: NextAuthOptions = {
       }
       return token;
     },
-    async session({ session, token }: { session: Session, token: JWT }) {
+    async session({ session, token }) {
       if (token) {
-        session.user = {
-          id: token.id as string,
-          name: token.name as string,
-          email: token.email as string,
-          usertype: token.usertype as number
-        };
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.usertype = token.usertype as number;
       }
       return session;
     }

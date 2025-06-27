@@ -1,15 +1,58 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 interface Order {
-  id: string;
-  date: string;
-  total: string;
-  status: 'In Progress' | 'Canceled' | 'Delayed' | 'Delivered';
+  transaction_id: number;
+  user_id?: number;
+  amount?: number;
+  status?: string;
+  date_added?: string;
 }
 
 const AccountOrders: React.FC = () => {
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    async function fetchOrders() {
+      try {
+        setLoading(true);
+        setError(null);
+        const res = await fetch('/api/orders');
+        const data = await res.json();
+        if (data.success) {
+          setOrders(data.data);
+        } else {
+          setError(data.error || 'Failed to fetch orders');
+        }
+      } catch (err: any) {
+        setError(err.message || 'Failed to fetch orders');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchOrders();
+  }, []);
+
+  // Sidebar user info
+  let sidebarUser = null;
+  if (status === 'loading') {
+    sidebarUser = <div>Loading user...</div>;
+  } else if (status === 'authenticated' && session?.user) {
+    sidebarUser = (
+      <>
+        <h5 className="text-lg font-semibold">{session.user.name || session.user.email}</h5>
+        <span className="text text-[#d9144e]">{session.user.email}</span>
+      </>
+    );
+  } else {
+    sidebarUser = <div className="text-gray-500">Not logged in</div>;
+  }
+
   return (
     <div>
       <div className="w-full overflow-hidden mb-[26%]">
@@ -55,8 +98,7 @@ const AccountOrders: React.FC = () => {
                 <div className="bg-white xl:rounded-2xl xl:relative xl:z-9 shadow-[0_0px_20px_0_rgba(0,0,0,0.1)] 
                 top-0 left-0 max-xl:w-[280px]" id="accountSidebar">
                   <div className="p-6 rounded-xl text-center">     
-                    <h5 className="text-lg font-semibold">user username</h5>
-                    <span className="text text-[#d9144e]">user email</span>
+                    {sidebarUser}
                   </div>
                   <div className="mt-5">
                     <div className="py-2 px-5 mb-2 bg-yellow-50">DASHBOARD</div>
@@ -82,6 +124,11 @@ const AccountOrders: React.FC = () => {
             <section className="w-full max-w-[1200px] mx-auto p-20 md:pl-9 mt-[30%] md:-mt-14">
               <div className="border border-black/10 p-7 rounded-xl min-h-[450px] max-sm:p-5">
                 <div className="overflow-x-auto">
+                  {loading ? (
+                    <div>Loading orders...</div>
+                  ) : error ? (
+                    <div className="text-red-500">{error}</div>
+                  ) : (
                   <table className="table-hover min-w-[600px] mb-4 w-full text-left">
                     <thead>
                       <tr>
@@ -93,114 +140,34 @@ const AccountOrders: React.FC = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                        {orders.length === 0 ? (
+                          <tr>
+                            <td colSpan={5} className="text-center py-6">No orders found.</td>
+                      </tr>
+                        ) : (
+                          orders.map((order) => (
+                            <tr key={order.transaction_id}>
                         <td className="py-4 px-3 text-body border-t border-border">
-                          <a href="#" className="fw-medium">#34VB5540K83</a>
+                                <span className="fw-medium">#{order.transaction_id}</span>
                         </td>
-                        <td className="py-4 px-3 text-body border-t border-border">May 21, 2024</td>
-                        <td className="py-4 px-3 text-body border-t border-border">$358.75</td>
                         <td className="py-4 px-3 text-body border-t border-border">
-                          <span className="py-1 px-2.5 text-white rounded-md uppercase text-center text-xs leading-[1] inline-block font-semibold bg-info m-0">In Progress</span>
+                                {order.date_added ? new Date(order.date_added).toLocaleDateString() : '-'}
+                        </td>
+                        <td className="py-4 px-3 text-body border-t border-border">
+                                <span className={`py-1 px-2.5 text-white rounded-md uppercase text-center text-xs leading-[1] inline-block font-semibold ${order.status === 'In Progress' ? 'bg-info' : order.status === 'Canceled' ? 'bg-danger' : order.status === 'Delayed' ? 'bg-warning' : order.status === 'Delivered' ? 'bg-success' : 'bg-gray-400'}`}>{order.status || '-'}</span>
+                        </td>
+                        <td className="py-4 px-3 text-body border-t border-border">
+                                {order.amount !== undefined ? `$${order.amount}` : '-'}
                         </td>
                         <td className="py-4 px-3 text-body border-t border-border text-right">
-                          <a href="#" className="text-primary underline p-0">View</a>
+                          <a href="/account-order-details" className="text-primary underline p-0">View</a>
                         </td>
                       </tr>
-                      <tr>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <a href="#" className="fw-medium">#78A643CD409</a>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border">December 09, 2024</td>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <span>$760.50</span>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <span className="py-1 px-2 text-white rounded-md uppercase text-center text-xs leading-[1] inline-block font-semibold bg-danger m-0">Canceled</span>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border text-right">
-                          <a href="#" className="text-primary underline p-0">View</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <a href="#" className="fw-medium">#112P45A90V2</a>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border">October 15, 2024</td>
-                        <td className="py-4 px-3 text-body border-t border-border">$1,264.00</td>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <span className="py-1.1 px-2.5 text-white rounded-md uppercase text-center text-xs leading-[1] inline-block font-semibold bg-warning m-0">Delayed</span>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border text-right">
-                          <a href="#" className="text-primary underline p-0">View</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <a href="#" className="fw-medium">#28BA67U0981</a>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border">July 19, 2024</td>
-                        <td className="py-4 px-3 text-body border-t border-border">$198.35</td>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <span className="py-1.1 px-2.5 text-white rounded-md uppercase text-center text-xs leading-[1] inline-block font-semibold bg-success m-0">Delivered</span>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border text-right">
-                          <a href="#" className="text-primary underline p-0">View</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <a href="#" className="fw-medium">#502TR872W2</a>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border">April 04, 2024</td>
-                        <td className="py-4 px-3 text-body border-t border-border">$2,133.90</td>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <span className="py-1.1 px-2.5 text-white rounded-md uppercase text-center text-xs leading-[1] inline-block font-semibold bg-success m-0">Delivered</span>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border text-right">
-                          <a href="#" className="text-primary underline p-0">View</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <a href="#" className="fw-medium">#47H76G09F33</a>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border">March 30, 2024</td>
-                        <td className="py-4 px-3 text-body border-t border-border">$86.40</td>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <span className="py-1.1 px-2.5 text-white rounded-md uppercase text-center text-xs leading-[1] inline-block font-semibold bg-success m-0">Delivered</span>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border text-right">
-                          <a href="#" className="text-primary underline p-0">View</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <a href="#" className="fw-medium">#53U76G09E38</a>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border">April 21, 2024</td>
-                        <td className="py-4 px-3 text-body border-t border-border">$86.40</td>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <span className="py-1.1 px-2.5 text-white rounded-md uppercase text-center text-xs leading-[1] inline-block font-semibold bg-success m-0">Delivered</span>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border text-right">
-                          <a href="#" className="text-primary underline p-0">View</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <a href="#" className="fw-medium">#31M76G09G76</a>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border">May 07, 2024</td>
-                        <td className="py-4 px-3 text-body border-t border-border">$112.40</td>
-                        <td className="py-4 px-3 text-body border-t border-border">
-                          <span className="py-1.1 px-2.5 text-white rounded-md uppercase text-center text-xs leading-[1] inline-block font-semibold bg-success m-0">Delivered</span>
-                        </td>
-                        <td className="py-4 px-3 text-body border-t border-border text-right">
-                          <a href="#" className="text-primary underline p-0">View</a>
-                        </td>
-                      </tr>
+                          ))
+                        )}
                     </tbody>
                   </table>
+                  )}
                 </div>
                 
                 <div className="flex justify-center">

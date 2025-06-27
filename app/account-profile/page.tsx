@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface UserProfile {
   firstName: string;
@@ -13,6 +15,8 @@ interface UserProfile {
 }
 
 const AccountProfile: React.FC = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const [profile, setProfile] = useState<UserProfile>({
     firstName: '',
     lastName: '',
@@ -22,6 +26,24 @@ const AccountProfile: React.FC = () => {
     confirmPassword: '',
     subscribeNewsletter: false
   });
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    } else if (session?.user) {
+      // Initialize profile with session data
+      setProfile(prev => ({
+        ...prev,
+        email: session.user.email || '',
+        firstName: session.user.name?.split(' ')[0] || '',
+        lastName: session.user.name?.split(' ').slice(1).join(' ') || '',
+      }));
+    }
+  }, [session, status, router]);
+
+  if (status === 'loading') {
+    return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+  }
 
   return (
     <div>
@@ -36,7 +58,7 @@ const AccountProfile: React.FC = () => {
             <nav>
               <ul className="flex items-center justify-center space-x-2 text-lg font-base">
                 <li>
-                  <a href="#" className="text-white text-base font-medium">
+                  <a href="/" className="text-white text-base font-medium">
                     Home
                   </a>
                 </li>
@@ -51,7 +73,7 @@ const AccountProfile: React.FC = () => {
                 </li>
                 <li>
                   <a href="#" className="text-white text-base font-medium">
-                    Shop Standard
+                    Account Profile
                   </a>
                 </li>
               </ul>
@@ -68,8 +90,8 @@ const AccountProfile: React.FC = () => {
                 <div className="bg-white xl:rounded-2xl xl:relative xl:z-9 shadow-[0_0px_20px_0_rgba(0,0,0,0.1)] 
                 top-0 left-0 max-xl:w-[280px]" id="accountSidebar">
                   <div className="p-6 rounded-xl text-center">     
-                    <h5 className="text-lg font-semibold">user username</h5>
-                    <span className="text text-[#d9144e]">user email</span>
+                    <h5 className="text-lg font-semibold">{session?.user?.name || 'User'}</h5>
+                    <span className="text text-[#d9144e]">{session?.user?.email || 'user@example.com'}</span>
                   </div>
                   <div className="mt-5">
                     <div className="py-2 px-5 mb-2 bg-yellow-50">DASHBOARD</div>
@@ -106,7 +128,8 @@ const AccountProfile: React.FC = () => {
               <div className="border border-black/10 p-5 rounded-xl min-h-[250px] max-sm:p-5">
                 <div className="sm:p-6 p-5 sm:-m-7 -m-5 sm:mb-[35px] mb-6 border-b border-black/20 flex items-center">
                   <div>
-                    <h2 className="text-2.5xl">John Doe</h2><span className="text-primary">johndoe@example.com</span>
+                    <h2 className="text-2.5xl">{session?.user?.name || 'User'}</h2>
+                    <span className="text-primary">{session?.user?.email || 'user@example.com'}</span>
                   </div>
                 </div>
 
@@ -141,6 +164,7 @@ const AccountProfile: React.FC = () => {
                         className="w-full py-3 px-4 h-13 outline-none rounded-xl border border-black bg-white duration-500 focus:bg-light"
                         value={profile.email}
                         onChange={(e) => setProfile({...profile, email: e.target.value})}
+                        disabled={session?.user?.email ? true : false}
                       />
                     </div>
                     <div className="w-full lg:w-[50%] pl-0 lg:pl-3 mb-6">
@@ -155,28 +179,30 @@ const AccountProfile: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap">
-                    <div className="w-full lg:w-[50%] pr-0 lg:pr-3 mb-6">
-                      <label className="mb-2.5 inline-block">New password (leave blank to leave unchanged)</label>
-                      <input 
-                        type="password" 
-                        required 
-                        className="w-full py-3 px-4 h-13 outline-none rounded-xl border border-black bg-white duration-500 focus:bg-light"
-                        value={profile.password}
-                        onChange={(e) => setProfile({...profile, password: e.target.value})}
-                      />
+                  {!session?.user && (
+                    <div className="flex flex-wrap">
+                      <div className="w-full lg:w-[50%] pr-0 lg:pr-3 mb-6">
+                        <label className="mb-2.5 inline-block">New password (leave blank to leave unchanged)</label>
+                        <input 
+                          type="password" 
+                          required 
+                          className="w-full py-3 px-4 h-13 outline-none rounded-xl border border-black bg-white duration-500 focus:bg-light"
+                          value={profile.password}
+                          onChange={(e) => setProfile({...profile, password: e.target.value})}
+                        />
+                      </div>
+                      <div className="w-full lg:w-[50%] pl-0 lg:pl-3 mb-6">
+                        <label className="mb-2.5 inline-block">Confirm new password</label>
+                        <input 
+                          type="password" 
+                          required 
+                          className="w-full py-3 px-4 h-13 outline-none rounded-xl border border-black bg-white duration-500 focus:bg-light"
+                          value={profile.confirmPassword}
+                          onChange={(e) => setProfile({...profile, confirmPassword: e.target.value})}
+                        />
+                      </div>
                     </div>
-                    <div className="w-full lg:w-[50%] pl-0 lg:pl-3 mb-6">
-                      <label className="mb-2.5 inline-block">Confirm new password</label>
-                      <input 
-                        type="password" 
-                        required 
-                        className="w-full py-3 px-4 h-13 outline-none rounded-xl border border-black bg-white duration-500 focus:bg-light"
-                        value={profile.confirmPassword}
-                        onChange={(e) => setProfile({...profile, confirmPassword: e.target.value})}
-                      />
-                    </div>
-                  </div>
+                  )}
                 </form>
 
                 <div className="flex flex-wrap justify-between items-center">

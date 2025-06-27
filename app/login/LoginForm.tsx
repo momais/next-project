@@ -220,25 +220,34 @@ export default function LoginForm() {
                       id="remember-me"
                       name="remember-me"
                       type="checkbox"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
                     />
                     <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                       Remember me
                     </label>
                   </div>
                   <div className="text-sm">
-                    <Link href="/forgot-password" className="font-medium text-blue-600 hover:text-blue-500">
+                    <Link href="/forgot-password" className="font-medium text-red-600">
                       Forgot your password?
                     </Link>
                   </div>
                 </div>
+              <div className="space-x-4">
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-4 px-5 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="py-3.5 px-14 max-sm:px-6 text-base max-sm:text-sm inline-block
+                     font-medium leading-[1.2] border border-black bg-black text-white rounded-xl duration-700"
                   disabled={isLoading}
                 >
                   {isLoading ? 'Logging in...' : 'Login'}
                 </button>
+                <Link 
+                    href="/register" 
+                    className="btn py-3.5 px-12 max-sm:px-6 text-base max-sm:text-sm font-Lufga inline-block font-medium leading-[1.2] border border-black hover:bg-black hover:text-white rounded-xl duration-700 relative uppercase"
+                  >
+                    Register
+                  </Link>
+                  </div>
               </form>
 
               {/* Social Login Buttons */}
@@ -292,14 +301,6 @@ export default function LoginForm() {
                 </div>
               </div>
 
-              <div className="mt-6 text-center">
-                <p className="text-sm text-gray-600">
-                  Don't have an account?{' '}
-                  <Link href="/register" className="font-medium text-blue-600 hover:text-blue-500">
-                    Register
-                  </Link>
-                </p>
-              </div>
             </div>
           </div>
         </div>

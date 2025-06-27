@@ -56,6 +56,39 @@ const authOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === 'development',
+  callbacks: {
+    async jwt({ token, user }: { token: any; user?: any }) {
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.usertype = user.usertype;
+      }
+      if (!token.id && token.email) {
+        try {
+          const dbUser = await findUserByEmail(token.email);
+          if (dbUser) {
+            token.id = dbUser.user_id.toString();
+            token.name = dbUser.username;
+            token.email = dbUser.email;
+            token.usertype = dbUser.usertype;
+          }
+        } catch (e) {
+          // Optionally log error
+        }
+      }
+      return token;
+    },
+    async session({ session, token }: { session: any; token: any }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.usertype = token.usertype;
+      }
+      return session;
+    }
+  },
 };
 
 const handler = NextAuth(authOptions);
